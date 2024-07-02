@@ -2,14 +2,16 @@ import torch as t
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from matplotlib import pyplot as plt
 from matplotlib.ticker import ScalarFormatter
-from utils.helpers import add_vector_from_position, find_instruction_end_postion, get_model_path
+from utils.helpers import add_vector_from_position, find_instruction_end_postion
 from utils.tokenize import (
     tokenize_llama_chat,
     tokenize_llama_base,
+    tokenize_gemma_chat,
+    tokenize_gemma_base,
     ADD_FROM_POS_BASE,
     ADD_FROM_POS_CHAT,
 )
-from typing import Optional
+from typing import Optional, List, Tuple, Any
 
 
 class AttnWrapper(t.nn.Module):
@@ -66,7 +68,7 @@ class BlockOutputWrapper(t.nn.Module):
             top_token_id = t.topk(decoded_activations, 1)[1][0]
             top_token = self.tokenizer.decode(top_token_id)
             dot_product = t.dot(last_token_activations, self.calc_dot_product_with) / (
-                t.norm(last_token_activations) * t.norm(self.calc_dot_product_with)
+                    t.norm(last_token_activations) * t.norm(self.calc_dot_product_with)
             )
             self.dot_products.append((top_token, dot_product.cpu().item()))
         if self.add_activations is not None:
@@ -110,98 +112,83 @@ class BlockOutputWrapper(t.nn.Module):
         self.dot_products = []
 
 
-class LlamaWrapper:
+class ModelWrapper:
     def __init__(
-        self,
-        hf_token: str,
-        size: str = "7b",
-        use_chat: bool = True,
-        override_model_weights_path: Optional[str] = None,
+            self,
+            hf_token: str,
+            model_name_path: str,
+            use_chat: bool,
+            override_model_weights_path: Optional[str] = None,
     ):
         self.device = "cuda" if t.cuda.is_available() else "cpu"
+        self.model_name_path = model_name_path
         self.use_chat = use_chat
-        self.model_name_path = get_model_path(size, not use_chat)
-        self.tokenizer = AutoTokenizer.from_pretrained(
-            self.model_name_path, token=hf_token
-        )
-        self.model = AutoModelForCausalLM.from_pretrained(
-            self.model_name_path, token=hf_token
-        )
+        self.END_STR = None  # Set in subclass
+
+        try:
+            self.tokenizer = AutoTokenizer.from_pretrained(
+                self.model_name_path, token=hf_token
+            )
+            self.model = AutoModelForCausalLM.from_pretrained(
+                self.model_name_path,
+                device_map="auto",
+                torch_dtype=t.bfloat16
+            )
+        except Exception as e:
+            raise ValueError(f"Failed to initialize model or tokenizer: {e}")
+
         if override_model_weights_path is not None:
             self.model.load_state_dict(t.load(override_model_weights_path))
-        if size != "7b":
-            self.model = self.model.half()
         self.model = self.model.to(self.device)
-        if use_chat:
-            self.END_STR = t.tensor(self.tokenizer.encode(ADD_FROM_POS_CHAT)[1:]).to(
-                self.device
-            )
-        else:
-            self.END_STR = t.tensor(self.tokenizer.encode(ADD_FROM_POS_BASE)[1:]).to(
-                self.device
-            )
+
         for i, layer in enumerate(self.model.model.layers):
             self.model.model.layers[i] = BlockOutputWrapper(
                 layer, self.model.lm_head, self.model.model.norm, self.tokenizer
             )
 
-    def set_save_internal_decodings(self, value: bool):
+    def set_save_internal_decodings(self, value: bool) -> None:
         for layer in self.model.model.layers:
             layer.save_internal_decodings = value
 
-    def set_from_positions(self, pos: int):
+    def set_from_positions(self, pos: int) -> None:
         for layer in self.model.model.layers:
             layer.from_position = pos
 
-    def generate(self, tokens, max_new_tokens=100):
+    def generate(self, tokens: t.Tensor, max_new_tokens: int = 100, **kwargs: Any) -> str:
         with t.no_grad():
             instr_pos = find_instruction_end_postion(tokens[0], self.END_STR)
             self.set_from_positions(instr_pos)
-            generated = self.model.generate(
-                inputs=tokens, max_new_tokens=max_new_tokens, top_k=1
-            )
+            generation_kwargs = {
+                "max_new_tokens": max_new_tokens,
+                "do_sample": True,
+                "temperature": 0.7,
+                "top_k": 50,
+                "top_p": 0.95,
+                **kwargs
+            }
+            generated = self.model.generate(inputs=tokens, **generation_kwargs)
             return self.tokenizer.batch_decode(generated)[0]
 
-    def generate_text(self, user_input: str, model_output: Optional[str] = None, system_prompt: Optional[str] = None, max_new_tokens: int = 50) -> str:
-        if self.use_chat:
-            tokens = tokenize_llama_chat(
-                tokenizer=self.tokenizer, user_input=user_input, model_output=model_output, system_prompt=system_prompt
-            )
-        else:
-            tokens = tokenize_llama_base(tokenizer=self.tokenizer, user_input=user_input, model_output=model_output)
-        tokens = t.tensor(tokens).unsqueeze(0).to(self.device)
-        return self.generate(tokens, max_new_tokens=max_new_tokens)
-
-    def get_logits(self, tokens):
+    def get_logits(self, tokens: t.Tensor) -> t.Tensor:
         with t.no_grad():
             instr_pos = find_instruction_end_postion(tokens[0], self.END_STR)
             self.set_from_positions(instr_pos)
             logits = self.model(tokens).logits
             return logits
 
-    def get_logits_from_text(self, user_input: str, model_output: Optional[str] = None, system_prompt: Optional[str] = None) -> t.Tensor:
-        if self.use_chat:
-            tokens = tokenize_llama_chat(
-                tokenizer=self.tokenizer, user_input=user_input, model_output=model_output, system_prompt=system_prompt
-            )
-        else:
-            tokens = tokenize_llama_base(tokenizer=self.tokenizer, user_input=user_input, model_output=model_output)
-        tokens = t.tensor(tokens).unsqueeze(0).to(self.device)
-        return self.get_logits(tokens)
-
-    def get_last_activations(self, layer):
+    def get_last_activations(self, layer: int) -> t.Tensor:
         return self.model.model.layers[layer].activations
 
-    def set_add_activations(self, layer, activations):
+    def set_add_activations(self, layer: int, activations: t.Tensor) -> None:
         self.model.model.layers[layer].add(activations)
 
-    def set_calc_dot_product_with(self, layer, vector):
+    def set_calc_dot_product_with(self, layer: int, vector: t.Tensor) -> None:
         self.model.model.layers[layer].calc_dot_product_with = vector
 
-    def get_dot_products(self, layer):
+    def get_dot_products(self, layer: int) -> List[Tuple[str, float]]:
         return self.model.model.layers[layer].dot_products
 
-    def reset_all(self):
+    def reset_all(self) -> None:
         for layer in self.model.model.layers:
             layer.reset()
 
@@ -210,13 +197,13 @@ class LlamaWrapper:
         print(label, data)
 
     def decode_all_layers(
-        self,
-        tokens,
-        topk=10,
-        print_attn_mech=True,
-        print_intermediate_res=True,
-        print_mlp=True,
-        print_block=True,
+            self,
+            tokens,
+            topk=10,
+            print_attn_mech=True,
+            print_intermediate_res=True,
+            print_mlp=True,
+            print_block=True,
     ):
         tokens = tokens.to(self.device)
         self.get_logits(tokens)
@@ -246,17 +233,10 @@ class LlamaWrapper:
         self.get_logits(tokens)
         layer = self.model.model.layers[layer_number]
 
-        data = {}
-        data["Attention mechanism"] = self.get_activation_data(
-            layer.attn_out_unembedded, topk
-        )[1]
-        data["Intermediate residual stream"] = self.get_activation_data(
-            layer.intermediate_resid_unembedded, topk
-        )[1]
-        data["MLP output"] = self.get_activation_data(layer.mlp_out_unembedded, topk)[1]
-        data["Block output"] = self.get_activation_data(
-            layer.block_output_unembedded, topk
-        )[1]
+        data = {"Attention mechanism": self.get_activation_data(layer.attn_out_unembedded, topk)[1],
+                "Intermediate residual stream": self.get_activation_data(layer.intermediate_resid_unembedded, topk)[1],
+                "MLP output": self.get_activation_data(layer.mlp_out_unembedded, topk)[1],
+                "Block output": self.get_activation_data(layer.block_output_unembedded, topk)[1]}
 
         # Plotting
         fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(8, 6))
@@ -282,3 +262,71 @@ class LlamaWrapper:
         probs_percent = [int(v * 100) for v in values.tolist()]
         tokens = self.tokenizer.batch_decode(indices.unsqueeze(-1))
         return list(zip(tokens, probs_percent)), list(zip(tokens, values.tolist()))
+
+
+class LlamaWrapper(ModelWrapper):
+    def __init__(self, hf_token: str, model_name_path: str, use_chat: bool = True,
+                 override_model_weights_path: Optional[str] = None):
+        super().__init__(hf_token, model_name_path, use_chat, override_model_weights_path)
+        self.END_STR = t.tensor(
+            self.tokenizer.encode(ADD_FROM_POS_CHAT if self.use_chat else ADD_FROM_POS_BASE)[1:]).to(self.device)
+
+        # Use half precision (float16) for larger Llama models
+        # This reduces the memory footprint of the model by about 50% compared to full precision. Slightly reduces
+        # numerical precision, but often negligible for inference tasks.
+        #
+        # Note: We specifically use this for 13B models as they are more likely to benefit from the memory savings,
+        # while smaller models like 7B may not need this optimization on most modern GPUs.
+        if "13b" in model_name_path.lower():
+            self.model = self.model.half()
+
+    def generate_text(self, user_input: str, model_output: Optional[str] = None, system_prompt: Optional[str] = None,
+                      max_new_tokens: int = 50) -> str:
+        if self.use_chat:
+            tokens = tokenize_llama_chat(
+                tokenizer=self.tokenizer, user_input=user_input, model_output=model_output, system_prompt=system_prompt
+            )
+        else:
+            tokens = tokenize_llama_base(tokenizer=self.tokenizer, user_input=user_input, model_output=model_output)
+        tokens = t.tensor(tokens).unsqueeze(0).to(self.device)
+        return self.generate(tokens, max_new_tokens=max_new_tokens)
+
+    def get_logits_from_text(self, user_input: str, model_output: Optional[str] = None,
+                             system_prompt: Optional[str] = None) -> t.Tensor:
+        if self.use_chat:
+            tokens = tokenize_llama_chat(
+                tokenizer=self.tokenizer, user_input=user_input, model_output=model_output, system_prompt=system_prompt
+            )
+        else:
+            tokens = tokenize_llama_base(tokenizer=self.tokenizer, user_input=user_input, model_output=model_output)
+        tokens = t.tensor(tokens).unsqueeze(0).to(self.device)
+        return self.get_logits(tokens)
+
+
+class GemmaWrapper(ModelWrapper):
+    def __init__(self, hf_token: str, model_name_path: str, use_chat: bool = True,
+                 override_model_weights_path: Optional[str] = None):
+        super().__init__(hf_token, model_name_path, use_chat, override_model_weights_path)
+        self.END_STR = t.tensor(self.tokenizer.encode("<end_of_turn>")[1:]).to(self.device)
+
+    def generate_text(self, user_input: str, model_output: Optional[str] = None, system_prompt: Optional[str] = None,
+                      max_new_tokens: int = 50) -> str:
+        if self.use_chat:
+            tokens = tokenize_gemma_chat(
+                tokenizer=self.tokenizer, user_input=user_input, model_output=model_output, system_prompt=system_prompt
+            )
+        else:
+            tokens = tokenize_gemma_base(tokenizer=self.tokenizer, user_input=user_input, model_output=model_output)
+        tokens = t.tensor(tokens).unsqueeze(0).to(self.device)
+        return self.generate(tokens, max_new_tokens=max_new_tokens)
+
+    def get_logits_from_text(self, user_input: str, model_output: Optional[str] = None,
+                             system_prompt: Optional[str] = None) -> t.Tensor:
+        if self.use_chat:
+            tokens = tokenize_gemma_chat(
+                tokenizer=self.tokenizer, user_input=user_input, model_output=model_output, system_prompt=system_prompt
+            )
+        else:
+            tokens = tokenize_gemma_base(tokenizer=self.tokenizer, user_input=user_input, model_output=model_output)
+        tokens = t.tensor(tokens).unsqueeze(0).to(self.device)
+        return self.get_logits(tokens)

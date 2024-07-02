@@ -63,12 +63,6 @@ def make_tensor_save_suffix(layer, model_name_path):
     return f'{layer}_{model_name_path.split("/")[-1]}'
 
 
-def get_model_path(size: str, is_base: bool):
-    if is_base:
-        return f"meta-llama/Llama-2-{size}-hf"
-    else:
-        return f"meta-llama/Llama-2-{size}-chat-hf"
-
 def model_name_format(name: str) -> str:
     name = name.lower()
     is_chat = "chat" in name
