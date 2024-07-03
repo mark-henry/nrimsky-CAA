@@ -132,7 +132,7 @@ class ModelWrapper:
             self.model = AutoModelForCausalLM.from_pretrained(
                 self.model_name_path,
                 device_map="auto",
-                torch_dtype=self.dtype or t.bfloat16
+                torch_dtype=self.dtype
             )
         except Exception as e:
             raise ValueError(f"Failed to initialize model or tokenizer: {e}")
@@ -267,6 +267,7 @@ class ModelWrapper:
 class LlamaWrapper(ModelWrapper):
     def __init__(self, hf_token: str, model_name_path: str, use_chat: bool = True,
                  override_model_weights_path: Optional[str] = None):
+        self.dtype=t.float16
         super().__init__(hf_token, model_name_path, use_chat, override_model_weights_path)
         self.END_STR = t.tensor(
             self.tokenizer.encode(ADD_FROM_POS_CHAT if self.use_chat else ADD_FROM_POS_BASE)[1:]).to(self.device)
