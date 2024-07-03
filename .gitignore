@@ -1,6 +1,7 @@
 activations
 vectors
 normalized_vectors
+results
 venv
 __pycache__
 .pytest_cache

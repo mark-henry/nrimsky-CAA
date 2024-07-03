@@ -113,6 +113,16 @@ class BlockOutputWrapper(t.nn.Module):
 
 
 class ModelWrapper:
+    @staticmethod
+    def for_model_name(hf_token, model_name_path, use_chat: bool):
+        if "llama" in model_name_path.lower():
+            model = LlamaWrapper(hf_token, model_name_path, use_chat=use_chat)
+        elif "gemma" in model_name_path.lower():
+            model = GemmaWrapper(hf_token, model_name_path, use_chat=use_chat)
+        else:
+            raise ValueError(f"Unsupported model: {model_name_path}")
+        return model
+
     def __init__(
             self,
             hf_token: str,
@@ -141,17 +151,17 @@ class ModelWrapper:
             self.model.load_state_dict(t.load(override_model_weights_path))
         self.model = self.model.to(self.device)
 
-        for i, layer in enumerate(self.model.model.layers):
-            self.model.model.layers[i] = BlockOutputWrapper(
-                layer, self.model.lm_head, self.model.model.norm, self.tokenizer
+        for i, layer in enumerate(self.model.model_name_path.layers):
+            self.model.model_name_path.layers[i] = BlockOutputWrapper(
+                layer, self.model.lm_head, self.model.model_name_path.norm, self.tokenizer
             )
 
     def set_save_internal_decodings(self, value: bool) -> None:
-        for layer in self.model.model.layers:
+        for layer in self.model.model_name_path.layers:
             layer.save_internal_decodings = value
 
     def set_from_positions(self, pos: int) -> None:
-        for layer in self.model.model.layers:
+        for layer in self.model.model_name_path.layers:
             layer.from_position = pos
 
     def generate(self, tokens: t.Tensor, max_new_tokens: int = 100, **kwargs: Any) -> str:
@@ -177,19 +187,19 @@ class ModelWrapper:
             return logits
 
     def get_last_activations(self, layer: int) -> t.Tensor:
-        return self.model.model.layers[layer].activations
+        return self.model.model_name_path.layers[layer].activations
 
     def set_add_activations(self, layer: int, activations: t.Tensor) -> None:
-        self.model.model.layers[layer].add(activations)
+        self.model.model_name_path.layers[layer].add(activations)
 
     def set_calc_dot_product_with(self, layer: int, vector: t.Tensor) -> None:
-        self.model.model.layers[layer].calc_dot_product_with = vector
+        self.model.model_name_path.layers[layer].calc_dot_product_with = vector
 
     def get_dot_products(self, layer: int) -> List[Tuple[str, float]]:
-        return self.model.model.layers[layer].dot_products
+        return self.model.model_name_path.layers[layer].dot_products
 
     def reset_all(self) -> None:
-        for layer in self.model.model.layers:
+        for layer in self.model.model_name_path.layers:
             layer.reset()
 
     def print_decoded_activations(self, decoded_activations, label, topk=10):
@@ -207,7 +217,7 @@ class ModelWrapper:
     ):
         tokens = tokens.to(self.device)
         self.get_logits(tokens)
-        for i, layer in enumerate(self.model.model.layers):
+        for i, layer in enumerate(self.model.model_name_path.layers):
             print(f"Layer {i}: Decoded intermediate outputs")
             if print_attn_mech:
                 self.print_decoded_activations(
@@ -231,7 +241,7 @@ class ModelWrapper:
     def plot_decoded_activations_for_layer(self, layer_number, tokens, topk=10):
         tokens = tokens.to(self.device)
         self.get_logits(tokens)
-        layer = self.model.model.layers[layer_number]
+        layer = self.model.model_name_path.layers[layer_number]
 
         data = {"Attention mechanism": self.get_activation_data(layer.attn_out_unembedded, topk)[1],
                 "Intermediate residual stream": self.get_activation_data(layer.intermediate_resid_unembedded, topk)[1],
@@ -267,7 +277,7 @@ class ModelWrapper:
 class LlamaWrapper(ModelWrapper):
     def __init__(self, hf_token: str, model_name_path: str, use_chat: bool = True,
                  override_model_weights_path: Optional[str] = None):
-        self.dtype=t.float16
+        self.dtype = t.float16
         super().__init__(hf_token, model_name_path, use_chat, override_model_weights_path)
         self.END_STR = t.tensor(
             self.tokenizer.encode(ADD_FROM_POS_CHAT if self.use_chat else ADD_FROM_POS_BASE)[1:]).to(self.device)
@@ -278,7 +288,7 @@ class LlamaWrapper(ModelWrapper):
         #
         # Note: We specifically use this for 13B models as they are more likely to benefit from the memory savings,
         # while smaller models like 7B may not need this optimization on most modern GPUs.
-        if "13b" in model_name_path.lower():
+        if "13b" in model_name_path:
             self.model = self.model.half()
 
     def generate_text(self, user_input: str, model_output: Optional[str] = None, system_prompt: Optional[str] = None,
@@ -307,7 +317,7 @@ class LlamaWrapper(ModelWrapper):
 class GemmaWrapper(ModelWrapper):
     def __init__(self, hf_token: str, model_name_path: str, use_chat: bool = True,
                  override_model_weights_path: Optional[str] = None):
-        self.dtype=t.float32
+        self.dtype = t.float32
         super().__init__(hf_token, model_name_path, use_chat, override_model_weights_path)
         self.END_STR = t.tensor(self.tokenizer.encode("<end_of_turn>")[1:]).to(self.device)
 

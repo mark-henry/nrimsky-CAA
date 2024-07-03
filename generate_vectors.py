@@ -2,7 +2,7 @@
 Generates steering vectors for each layer of the model by averaging the activations of all the positive and negative examples.
 
 Example usage:
-python generate_vectors.py --layers $(seq 0 31) --save_activations --model "meta/llama-2-7b-chat-hf" --behaviors sycophancy
+python generate_vectors.py --layers $(seq 0 31) --save_activations --model "meta-llama/Llama-2-7b-chat-hf" --behaviors sycophancy
 python generate_vectors.py --layers $(seq 0 41) --save_activations --model "google/gemma-2-9b" --behaviors sycophancy
 """
 
@@ -159,10 +159,7 @@ def generate_save_vectors(
     model: model to generate vectors for, e.g. "google/gemma-2-9b", "meta/llama-2-7b-chat-hf"
     behaviors: behaviors to generate vectors for
     """
-    if "gemma" in model_name_path:
-        model = GemmaWrapper(HUGGINGFACE_TOKEN, model_name_path, use_chat)
-    else:
-        model = LlamaWrapper(HUGGINGFACE_TOKEN, model_name_path, use_chat)
+    model = ModelWrapper.for_model_name(HUGGINGFACE_TOKEN, model_name_path, use_chat)
     for behavior in behaviors:
         generate_save_vectors_for_behavior(layers, save_activations, behavior, model)
 
@@ -171,8 +168,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--layers", nargs="+", type=int, default=list(range(32)))
     parser.add_argument("--save_activations", action="store_true", default=False)
-    parser.add_argument("--use_chat", action="store_true", help="whether to use chat-style prompting",
-                        default=False)
+    parser.add_argument("--use_chat", action="store_true",
+                        help="whether to use chat-style prompting (set this for 'chat' models", default=False)
     parser.add_argument("--model", type=str, required=True,
                         help="e.g. google/gemma-2-9b, meta/llama-2-7b-hf, meta/llama-2-7b-chat-hf")
     parser.add_argument("--behaviors", nargs="+", type=str, default=ALL_BEHAVIORS)

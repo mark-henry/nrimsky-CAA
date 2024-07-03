@@ -105,8 +105,9 @@ python generate_vectors.py --layers $(seq 0 41) --save_activations --model "goog
 python normalize_vectors.py
 
 # Evaluate model on A/B, open-ended or TruthfulQA test sets while using CAA
-python prompting_with_steering.py --behaviors sycophancy --layers $(seq 0 31) --multipliers -1 0 1 --type ab --model_size "7b"
-python prompting_with_steering.py --behaviors sycophancy --layers 13 --multipliers -2 -1.5 -1 -0.5 0 0.5 1 1.5 2 --type ab --model_size "7b" --system_prompt pos
+python prompting_with_steering.py --behaviors sycophancy --layers $(seq 0 31) --multipliers -1 0 1 --type ab --model "meta-llama/Llama-2-7b-chat-hf"
+python prompting_with_steering.py --behaviors sycophancy --layers $(seq 0 41) --multipliers -1 0 1 --type ab --model "google/gemma-2-9b"
+python prompting_with_steering.py --behaviors sycophancy --layers 13 --multipliers -2 -1.5 -1 -0.5 0 0.5 1 1.5 2 --type ab --model "meta-llama/Llama-2-7b-chat-hf" --system_prompt pos
 
 # Plot PCA of constrastive activations
 python plot_activations.py --behaviors sycophancy --layers $(seq 0 31) --model_size "7b"
