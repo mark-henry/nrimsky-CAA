@@ -121,7 +121,7 @@ def test_steering(
         "truthful_qa": get_truthful_qa_data(),
         "mmlu": get_mmlu_data(),
     }
-    model = for_model_name(settings.model_name_path, settings.use_chat)
+    model = ModelWrapper.of(HUGGINGFACE_TOKEN, settings.model_name_path, settings.use_chat)
     a_token_id = model.tokenizer.convert_tokens_to_ids("A")
     b_token_id = model.tokenizer.convert_tokens_to_ids("B")
     model.set_save_internal_decodings(False)
@@ -135,6 +135,7 @@ def test_steering(
         else:
             vector = get_steering_vector(settings.behavior, layer, name_path, normalized=True)
         if "13b" in settings.model_name_path:
+            # 13b models are probably too large to fit in memory at full precision
             vector = vector.half()
         vector = vector.to(model.device)
         for multiplier in multipliers:
@@ -188,10 +189,10 @@ if __name__ == "__main__":
     parser.add_argument("--system_prompt", type=str, default=None, choices=["pos", "neg"], required=False)
     parser.add_argument("--override_vector", type=int, default=None)
     parser.add_argument("--override_vector_model", type=str, default=None)
-    parser.add_argument("--use_chat", action="store_true", help="whether to use chat-style prompting",
-                        default=False)
+    parser.add_argument("--use_chat", action="store_true",
+                        help="whether to use chat-style prompting (set this for chatty models)", default=False)
     parser.add_argument("--model", type=str, required=True,
-                        help="e.g. google/gemma-2-9b, meta/llama-2-7b-hf, meta/llama-2-7b-chat-hf")
+                        help="e.g. google/gemma-2-9b, meta-llama/Llama-2-7b-hf, meta-llama/Llama-2-7b-chat-hf")
     parser.add_argument("--override_model_weights_path", type=str, default=None)
     parser.add_argument("--overwrite", action="store_true", default=False)
 
@@ -202,8 +203,8 @@ if __name__ == "__main__":
     steering_settings.system_prompt = args.system_prompt
     steering_settings.override_vector = args.override_vector
     steering_settings.override_vector_model = args.override_vector_model
-    steering_settings.use_base_model = args.use_base_model
-    steering_settings.model_size = args.model_size
+    steering_settings.use_chat = args.use_chat
+    steering_settings.model_name_path = args.model
     steering_settings.override_model_weights_path = args.override_model_weights_path
 
     for behavior in args.behaviors:

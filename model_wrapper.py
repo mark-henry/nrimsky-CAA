@@ -114,7 +114,7 @@ class BlockOutputWrapper(t.nn.Module):
 
 class ModelWrapper:
     @staticmethod
-    def for_model_name(hf_token, model_name_path, use_chat: bool):
+    def of(hf_token, model_name_path, use_chat: bool):
         if "llama" in model_name_path.lower():
             model = LlamaWrapper(hf_token, model_name_path, use_chat=use_chat)
         elif "gemma" in model_name_path.lower():
@@ -151,17 +151,17 @@ class ModelWrapper:
             self.model.load_state_dict(t.load(override_model_weights_path))
         self.model = self.model.to(self.device)
 
-        for i, layer in enumerate(self.model.model_name_path.layers):
-            self.model.model_name_path.layers[i] = BlockOutputWrapper(
-                layer, self.model.lm_head, self.model.model_name_path.norm, self.tokenizer
+        for i, layer in enumerate(self.model.model.layers):
+            self.model.model.layers[i] = BlockOutputWrapper(
+                layer, self.model.lm_head, self.model.model.norm, self.tokenizer
             )
 
     def set_save_internal_decodings(self, value: bool) -> None:
-        for layer in self.model.model_name_path.layers:
+        for layer in self.model.model.layers:
             layer.save_internal_decodings = value
 
     def set_from_positions(self, pos: int) -> None:
-        for layer in self.model.model_name_path.layers:
+        for layer in self.model.model.layers:
             layer.from_position = pos
 
     def generate(self, tokens: t.Tensor, max_new_tokens: int = 100, **kwargs: Any) -> str:
@@ -187,19 +187,19 @@ class ModelWrapper:
             return logits
 
     def get_last_activations(self, layer: int) -> t.Tensor:
-        return self.model.model_name_path.layers[layer].activations
+        return self.model.model.layers[layer].activations
 
     def set_add_activations(self, layer: int, activations: t.Tensor) -> None:
-        self.model.model_name_path.layers[layer].add(activations)
+        self.model.model.layers[layer].add(activations)
 
     def set_calc_dot_product_with(self, layer: int, vector: t.Tensor) -> None:
-        self.model.model_name_path.layers[layer].calc_dot_product_with = vector
+        self.model.model.layers[layer].calc_dot_product_with = vector
 
     def get_dot_products(self, layer: int) -> List[Tuple[str, float]]:
-        return self.model.model_name_path.layers[layer].dot_products
+        return self.model.model.layers[layer].dot_products
 
     def reset_all(self) -> None:
-        for layer in self.model.model_name_path.layers:
+        for layer in self.model.model.layers:
             layer.reset()
 
     def print_decoded_activations(self, decoded_activations, label, topk=10):

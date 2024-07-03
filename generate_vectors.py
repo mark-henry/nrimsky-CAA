@@ -159,7 +159,7 @@ def generate_save_vectors(
     model: model to generate vectors for, e.g. "google/gemma-2-9b", "meta/llama-2-7b-chat-hf"
     behaviors: behaviors to generate vectors for
     """
-    model = ModelWrapper.for_model_name(HUGGINGFACE_TOKEN, model_name_path, use_chat)
+    model = ModelWrapper.of(HUGGINGFACE_TOKEN, model_name_path, use_chat)
     for behavior in behaviors:
         generate_save_vectors_for_behavior(layers, save_activations, behavior, model)
 
