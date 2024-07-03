@@ -108,7 +108,6 @@ def generate_save_vectors_for_behavior(
         data_path,
         HUGGINGFACE_TOKEN,
         model.model_name_path,
-        model.use_chat,
     )
 
     for p_tokens, n_tokens in tqdm(dataset, desc="Processing prompts"):

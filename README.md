@@ -97,7 +97,7 @@ For each behavior, we can evaluate the model on the following test sets:
 
 ```bash
 # Generate steering vectors for layers of the model for a certain behavior
-python generate_vectors.py --layers $(seq 0 42) --save_activations --model "google/gemma-2-9b" --behaviors sycophancy
+python generate_vectors.py --layers $(seq 0 41) --save_activations --model "google/gemma-2-9b" --behaviors sycophancy
 
 # Normalize steering vectors per layer to have the same norm
 python normalize_vectors.py
