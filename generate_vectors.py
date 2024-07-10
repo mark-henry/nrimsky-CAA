@@ -169,7 +169,7 @@ if __name__ == "__main__":
     parser.add_argument("--layers", nargs="+", type=int, default=list(range(32)))
     parser.add_argument("--save_activations", action="store_true", default=False)
     parser.add_argument("--use_chat", action="store_true",
-                        help="whether to use chat-style prompting (set this for 'chat' models", default=False)
+                        help="whether to use chat-style prompting (set this for 'chat' models)")
     parser.add_argument("--model", type=str, required=True,
                         help="e.g. google/gemma-2-9b, meta/llama-2-7b-hf, meta/llama-2-7b-chat-hf")
     parser.add_argument("--behaviors", nargs="+", type=str, default=ALL_BEHAVIORS)

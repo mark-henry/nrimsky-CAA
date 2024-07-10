@@ -190,7 +190,7 @@ if __name__ == "__main__":
     parser.add_argument("--override_vector", type=int, default=None)
     parser.add_argument("--override_vector_model", type=str, default=None)
     parser.add_argument("--use_chat", action="store_true",
-                        help="whether to use chat-style prompting (set this for chatty models)", default=False)
+                        help="whether to use chat-style prompting (set this for chatty models)")
     parser.add_argument("--model", type=str, required=True,
                         help="e.g. google/gemma-2-9b, meta-llama/Llama-2-7b-hf, meta-llama/Llama-2-7b-chat-hf")
     parser.add_argument("--override_model_weights_path", type=str, default=None)

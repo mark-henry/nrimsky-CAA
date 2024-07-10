@@ -35,3 +35,35 @@ class SteeringSettings:
             "override_model_weights_path": self.override_model_weights_path,
         }
         return "_".join([f"{k}={str(v).replace('/', '-')}" for k, v in elements.items() if v is not None])
+
+    def filter_result_files_by_suffix(
+        self,
+        directory: str,
+        layer: Optional[int] = None,
+        multiplier: Optional[int] = None,
+    ):
+        elements = {
+            "layer": str(layer)+"_",
+            "multiplier": str(float(multiplier))+"_",
+            "behavior": self.behavior,
+            "type": self.type,
+            "system_prompt": self.system_prompt,
+            "override_vector": self.override_vector,
+            "override_vector_model": self.override_vector_model,
+            "use_chat": self.use_chat,
+            "model": self.model_name_path,
+            "override_model_weights_path": self.override_model_weights_path,
+        }
+
+        filtered_elements = {k: v for k, v in elements.items() if v is not None}
+        remove_elements = {k for k, v in elements.items() if v is None}
+
+        matching_files = []
+
+        for filename in os.listdir(directory):
+            if all(f"{k}={str(v).replace('/', '-')}" in filename for k, v in filtered_elements.items()):
+                # ensure remove_elements are *not* present
+                if all(f"{k}=" not in filename for k in remove_elements):
+                    matching_files.append(filename)
+
+        return [os.path.join(directory, f) for f in matching_files]
