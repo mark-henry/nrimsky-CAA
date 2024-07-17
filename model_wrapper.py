@@ -11,7 +11,7 @@ from utils.tokenize import (
     ADD_FROM_POS_BASE,
     ADD_FROM_POS_CHAT,
 )
-from typing import Optional, List, Tuple, Any
+from typing import Optional, List, Tuple, Any, Dict
 
 
 class AttnWrapper(t.nn.Module):
@@ -72,12 +72,7 @@ class BlockOutputWrapper(t.nn.Module):
             )
             self.dot_products.append((top_token, dot_product.cpu().item()))
         if self.add_activations is not None:
-            augmented_output = add_vector_from_position(
-                matrix=output[0],
-                vector=self.add_activations,
-                position_ids=kwargs["position_ids"],
-                from_pos=self.from_position,
-            )
+            augmented_output = output[0] + self.add_activations
             output = (augmented_output,) + output[1:]
 
         if not self.save_internal_decodings:
@@ -189,8 +184,19 @@ class ModelWrapper:
     def get_last_activations(self, layer: int) -> t.Tensor:
         return self.model.model.layers[layer].activations
 
-    def set_add_activations(self, layer: int, activations: t.Tensor) -> None:
-        self.model.model.layers[layer].add(activations)
+    def set_add_activations(self, layer_vectors: Dict[int, t.Tensor]):
+        """
+        Set activation vectors to be added for multiple layers.
+
+        Args:
+            layer_vectors (Dict[int, t.Tensor]): A dictionary mapping layer numbers to their respective steering vectors.
+        """
+        for layer, vector in layer_vectors.items():
+            self.model.model.layers[layer].add(vector.to(self.device))
+
+    def reset_all(self):
+        for layer in self.model.model.layers:
+            layer.reset()
 
     def set_calc_dot_product_with(self, layer: int, vector: t.Tensor) -> None:
         self.model.model.layers[layer].calc_dot_product_with = vector

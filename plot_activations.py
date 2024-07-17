@@ -2,8 +2,8 @@
 Script to plot PCA of constrastive activations
 
 Usage:
-python plot_activations.py --behaviors sycophancy --layers 9 10 11 --model "meta-llama/Llama-2-7b-chat-hf" --use_chat
-python plot_activations.py --behaviors sycophancy --layers 9 10 11 --model "google/gemma-2-9b" --use_chat
+python plot_activations.py --behaviors sycophancy --layers 9 10 11 --model meta-llama/Llama-2-7b-chat-hf --use_chat
+python plot_activations.py --behaviors sycophancy --layers 9 10 11 --model google/gemma-2-9b --use_chat
 """
 
 import json

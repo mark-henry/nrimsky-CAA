@@ -97,9 +97,9 @@ For each behavior, we can evaluate the model on the following test sets:
 
 ```bash
 # Generate steering vectors for layers of the model for a certain behavior
-python generate_vectors.py --layers $(seq 0 31) --save_activations --model "meta-llama/Llama-2-7b-chat-hf" --use_chat --behaviors sycophancy
-python generate_vectors.py --layers $(seq 0 31) --save_activations --model "meta-llama/Llama-2-7b-hf"  --behaviors sycophancy
-python generate_vectors.py --layers $(seq 0 41) --save_activations --model "google/gemma-2-9b" --use_chat --behaviors sycophancy
+python generate_vectors.py --layers $(seq 0 31) --save_activations --model "meta-llama/Llama-2-7b-chat-hf" --use_chat --behaviors corrigible-neutral-HHH
+python generate_vectors.py --layers $(seq 0 31) --save_activations --model "meta-llama/Llama-2-7b-hf"  --behaviors corrigible-neutral-HHH
+python generate_vectors.py --layers $(seq 0 41) --save_activations --model "google/gemma-2-9b" --use_chat --behaviors corrigible-neutral-HHH
 
 # Normalize steering vectors per layer to have the same norm
 python normalize_vectors.py
@@ -109,7 +109,7 @@ python prompting_with_steering.py --behaviors sycophancy --layers $(seq 0 31) --
 python prompting_with_steering.py --behaviors sycophancy --layers $(seq 0 41) --multipliers -1 0 1 --type ab --model "google/gemma-2-9b" --use_chat
 python prompting_with_steering.py --behaviors sycophancy --layers 13 --multipliers -2 -1.5 -1 -0.5 0 0.5 1 1.5 2 --type ab --model "meta-llama/Llama-2-7b-chat-hf" --use_chat --system_prompt pos
 
-# Plot PCA of constrastive activations
+# Plot PCA of contrastive activations
 python plot_activations.py --behaviors sycophancy --layers $(seq 0 31) --model "meta-llama/Llama-2-7b-chat-hf" --use_chat
 python plot_activations.py --behaviors sycophancy --layers $(seq 0 41) --model "google/gemma-2-9b" --use_chat
 
@@ -120,7 +120,7 @@ python plot_results.py --layers $(seq 0 31) --multipliers -1 0 1 --behaviors syc
 # Finetune a llama on a behavioral dataset using supervised finetuning on the A/B tokens
 python finetune_llama.py --behavior sycophancy --direction pos
 
-# Plot similarites of steering vectors
+# Plot similarities of steering vectors
 python analyze_vectors.py
 
 # Use GPT-4 to score open-ended responses
