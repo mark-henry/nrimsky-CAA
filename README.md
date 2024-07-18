@@ -96,7 +96,7 @@ For each behavior, we can evaluate the model on the following test sets:
 ## Available commands
 
 ```bash
-# Generate steering vectors for layers of the model for a certain behavior
+# Generate steering vecgtors for layers of the model for a certain behavior
 python generate_vectors.py --layers $(seq 0 31) --save_activations --model "meta-llama/Llama-2-7b-chat-hf" --use_chat --behaviors sycophancy
 python generate_vectors.py --layers $(seq 0 31) --save_activations --model "meta-llama/Llama-2-7b-hf"  --behaviors sycophancy
 python generate_vectors.py --layers $(seq 0 41) --save_activations --model "google/gemma-2-9b" --use_chat --behaviors sycophancy
