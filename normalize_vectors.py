@@ -37,6 +37,7 @@ def normalize_vectors(model_path_name: str, n_layers: int):
 
 if __name__ == "__main__":
     normalize_vectors("google/gemma-2-9b", 42)
+    normalize_vectors("google/gemma-2-9b-it", 42)
     normalize_vectors("google/gemma-2-27b", 42)
     normalize_vectors("meta/Llama-2-7b-hf", 32)
     normalize_vectors("meta/Llama-2-7b-chat-hf", 32)
