@@ -1,4 +1,6 @@
-# Steering Llama 2 with Contrastive Activation Addition
+# Steering Llama 2 and Gemma 2 with Contrastive Activation Addition
+
+This fork adds Google Gemma support to the original Llama 2 steering by @nrimsky.
 
 ## Setup
 
@@ -12,7 +14,7 @@ pip install -r requirements.txt
 Then create a `.env` file with the following variables (see `.env.example`):
 
 ```
-HF_TOKEN=huggingface_token_with_access_to_llama2
+HF_TOKEN=huggingface_token_with_access_to_llama2_and_gemma2
 OPEN_AI_KEY=openai_api_key_with_access_to_gpt4
 ```
 
@@ -96,31 +98,31 @@ For each behavior, we can evaluate the model on the following test sets:
 ## Available commands
 
 ```bash
-# Generate steering vecgtors for layers of the model for a certain behavior
+# Generate steering vectors for layers for different models and behaviors
 python generate_vectors.py --layers $(seq 0 31) --save_activations --model "meta-llama/Llama-2-7b-chat-hf" --use_chat --behaviors sycophancy
 python generate_vectors.py --layers $(seq 0 31) --save_activations --model "meta-llama/Llama-2-7b-hf"  --behaviors sycophancy
-python generate_vectors.py --layers $(seq 0 41) --save_activations --model "google/gemma-2-9b" --use_chat --behaviors sycophancy
+python generate_vectors.py --layers $(seq 0 41) --save_activations --model "google/gemma-2-9b-it" --use_chat --behaviors sycophancy
 
 # Normalize steering vectors per layer to have the same norm
 python normalize_vectors.py
 
 # Evaluate model on A/B, open-ended or TruthfulQA test sets while using CAA
 python prompting_with_steering.py --behaviors sycophancy --layers $(seq 0 31) --multipliers -1 0 1 --type ab --model "meta-llama/Llama-2-7b-chat-hf" --use_chat
-python prompting_with_steering.py --behaviors sycophancy --layers $(seq 0 41) --multipliers -1 0 1 --type ab --model "google/gemma-2-9b" --use_chat
+python prompting_with_steering.py --behaviors sycophancy --layers $(seq 0 41) --multipliers -1 0 1 --type ab --model "google/gemma-2-9b-it" --use_chat
 python prompting_with_steering.py --behaviors sycophancy --layers 13 --multipliers -2 -1.5 -1 -0.5 0 0.5 1 1.5 2 --type ab --model "meta-llama/Llama-2-7b-chat-hf" --use_chat --system_prompt pos
 
 # Plot PCA of constrastive activations
 python plot_activations.py --behaviors sycophancy --layers $(seq 0 31) --model "meta-llama/Llama-2-7b-chat-hf" --use_chat
-python plot_activations.py --behaviors sycophancy --layers $(seq 0 41) --model "google/gemma-2-9b" --use_chat
+python plot_activations.py --behaviors sycophancy --layers $(seq 0 41) --model "google/gemma-2-9b-it" --use_chat
 
 # Plot results of CAA steering effect
-python plot_results.py --layers $(seq 0 31) --multipliers 1 --type ab
-python plot_results.py --layers $(seq 0 31) --multipliers -1 0 1 --behaviors sycophancy --type ab
+python plot_results.py --layers $(seq 0 31) --model meta-llama/Llama-2-7b-chat-hf --multipliers 1 --type ab
+python plot_results.py --layers $(seq 0 41) --model google/gemma-2-9b-it --multipliers -1 0 1 --behaviors sycophancy --type ab
 
 # Finetune a llama on a behavioral dataset using supervised finetuning on the A/B tokens
 python finetune_llama.py --behavior sycophancy --direction pos
 
-# Plot similarites of steering vectors
+# Plot similaritiees of steering vectors
 python analyze_vectors.py
 
 # Use GPT-4 to score open-ended responses
