@@ -11,10 +11,10 @@ ADD_FROM_POS_BASE = BASE_RESPONSE
 
 
 def tokenize_llama_chat(
-    tokenizer: PreTrainedTokenizer,
-    user_input: str,
-    model_output: str = None,
-    system_prompt: str = None,
+        tokenizer: PreTrainedTokenizer,
+        user_input: str,
+        model_output: str = None,
+        system_prompt: str = None,
 ) -> List[int]:
     input_content = ""
     if system_prompt is not None:
@@ -26,10 +26,47 @@ def tokenize_llama_chat(
 
 
 def tokenize_llama_base(
-    tokenizer, user_input: str, model_output: str = None
+        tokenizer, user_input: str, model_output: str = None
 ) -> List[int]:
     input_content = ""
     input_content += f"{BASE_INPUT} {user_input.strip()}"
     if model_output is not None:
         input_content += f"{BASE_RESPONSE} {model_output.strip()}"
+    return tokenizer.encode(input_content)
+
+
+# Gemma
+
+GEMMA_BASE_INPUT = "Input:"
+GEMMA_BASE_RESPONSE = "\nResponse:"
+
+# For Gemma, we'll use the end-of-turn token as the position to add from
+GEMMA_ADD_FROM_POS_CHAT = "<end_of_turn>"
+GEMMA_ADD_FROM_POS_BASE = GEMMA_BASE_RESPONSE
+
+
+def tokenize_gemma_chat(
+        tokenizer: PreTrainedTokenizer,
+        user_input: str,
+        model_output: str = None,
+        system_prompt: str = None,
+) -> List[int]:
+    chat = []
+    if system_prompt is not None:
+        chat.append({"role": "system", "content": system_prompt})
+    chat.append({"role": "user", "content": user_input})
+    if model_output is not None:
+        chat.append({"role": "model", "content": model_output})
+
+    prompt = tokenizer.apply_chat_template(chat, tokenize=False, add_generation_prompt=True)
+    return tokenizer.encode(prompt, add_special_tokens=False)
+
+
+def tokenize_gemma_base(
+        tokenizer, user_input: str, model_output: str = None
+) -> List[int]:
+    input_content = ""
+    input_content += f"{GEMMA_BASE_INPUT} {user_input.strip()}"
+    if model_output is not None:
+        input_content += f"{GEMMA_BASE_RESPONSE} {model_output.strip()}"
     return tokenizer.encode(input_content)

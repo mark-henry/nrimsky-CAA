@@ -2,7 +2,8 @@
 Plot results from behavioral evaluations under steering.
 
 Example usage:
-python plot_results.py --layers $(seq 0 31) --multipliers -1 0 1 --type ab
+python plot_results.py --layers $(seq 0 31) --model "meta-llama/Llama-2-7b-chat-hf" --multipliers -1 0 1 --type ab --behaviors sycophancy
+python plot_results.py --layers $(seq 0 41) --model "google/gemma-2-9b-it" --multipliers -1 0 1 --type ab --behaviors sycophancy
 """
 
 import matplotlib.pyplot as plt
@@ -20,22 +21,24 @@ from utils.helpers import set_plotting_settings
 set_plotting_settings()
 
 def get_data(
-    layer: int,
-    multiplier: int,
-    settings: SteeringSettings,
+        layer: int,
+        multiplier: float,
+        settings: SteeringSettings,
 ) -> Dict[str, Any]:
     directory = get_results_dir(settings.behavior)
     if settings.type == "open_ended":
         directory = directory.replace("results", os.path.join("results", "open_ended_scores"))
-    filenames = settings.filter_result_files_by_suffix(
-        directory, layer=layer, multiplier=multiplier
-    )
-    if len(filenames) > 1:
-        print(f"[WARN] >1 filename found for filter {settings}", filenames)
-    if len(filenames) == 0:
-        print(f"[WARN] no filenames found for filter {settings}")
-        return []
-    with open(filenames[0], "r") as f:
+
+    # Construct the expected filename with float multiplier
+    filename = f"results_layer={layer}_multiplier={multiplier:.1f}_behavior={settings.behavior}_type={settings.type}_model={settings.model_name_path.replace('/', '-')}_use_chat={settings.use_chat}.json"
+
+    filepath = os.path.join(directory, filename)
+
+    if not os.path.exists(filepath):
+        print(f"[WARN] File not found: {filepath}")
+        return {}
+
+    with open(filepath, "r") as f:
         return json.load(f)
 
 
@@ -109,7 +112,7 @@ def plot_ab_results_for_layer(
     plt.ylabel("p(answer matching behavior)")
     plt.xticks(ticks=multipliers, labels=multipliers)
     if (settings.override_vector is None) and (settings.override_vector_model is None) and (settings.override_model_weights_path is None):
-        plt.title(f"{HUMAN_NAMES[settings.behavior]} - {settings.get_formatted_model_name()}", fontsize=11)
+        plt.title(f"{HUMAN_NAMES[settings.behavior]} - {settings.model_name_path}", fontsize=11)
     plt.tight_layout()
     plt.savefig(save_to, format="png")
     # Save data in all_results used for plotting as .txt
@@ -185,7 +188,7 @@ def plot_finetuning_openended_comparison(settings: SteeringSettings, finetune_po
 
 
 def plot_tqa_mmlu_results_for_layer(
-    layer: int, multipliers: List[float], settings: SteeringSettings
+        layer: int, multipliers: List[float], settings: SteeringSettings
 ):
     save_to = os.path.join(
         get_analysis_dir(settings.behavior),
@@ -234,11 +237,11 @@ def plot_tqa_mmlu_results_for_layer(
             return f"\\better{{{x_rounded_2dp:.2f}}}"
         else:
             return f"\\same{{{x_rounded_2dp:.2f}}}"
-        
+
     def _format_category_name(c):
         # split by _ and capitalize first letter of each word
         return " ".join([word.capitalize() for word in c.split("_")])
-    
+
     # Optionally, save the data used for plotting
     with open(save_to.replace(".png", ".txt"), "w") as f, open(save_to.replace(".png", ".tex"), "w") as f_tex:
         pos_avg = 0
@@ -259,7 +262,7 @@ def plot_tqa_mmlu_results_for_layer(
                 no_steering_res = f"\\same{{{no_steering_res:.2f}}}"
                 f_tex.write(f"{_format_category_name(category)} & {positive_steering_res} & {negative_steering_res} & {no_steering_res} \\\ \n")
             except KeyError:
-                pass                
+                pass
             for multiplier, score in res_list:
                 f.write(f"{category}\t{multiplier}\t{score}\n")
         pos_avg /= len(res_per_category)
@@ -271,9 +274,8 @@ def plot_tqa_mmlu_results_for_layer(
         avg_line = f"Average & {pos_avg} & {neg_avg} & {no_steering_avg} \\\ \n"
         f_tex.write(avg_line)
 
-
 def plot_open_ended_results(
-    layer: int, multipliers: List[float], settings: SteeringSettings
+        layer: int, multipliers: List[float], settings: SteeringSettings
 ):
     save_to = os.path.join(
         get_analysis_dir(settings.behavior),
@@ -308,7 +310,7 @@ def plot_open_ended_results(
 
 
 def plot_ab_data_per_layer(
-    layers: List[int], multipliers: List[float], settings: SteeringSettings
+        layers: List[int], multipliers: List[float], settings: SteeringSettings
 ):
     plt.clf()
     plt.figure(figsize=(10, 4))
@@ -333,13 +335,11 @@ def plot_ab_data_per_layer(
             linewidth=4,
             label="Negative steering" if multiplier < 0 else "Positive steering",
         )
-    # use % formatting for y axis
     plt.gca().yaxis.set_major_formatter(plt.FuncFormatter(lambda x, _: f"{x:.0%}"))
-    if (settings.override_vector is None) and (settings.override_vector_model is None) and (settings.override_model_weights_path is None):
-        plt.title(f"{HUMAN_NAMES[settings.behavior]} CAA, {settings.get_formatted_model_name()}")
+    plt.title(f"{HUMAN_NAMES[settings.behavior]} CAA, {settings.model_name_path}")
     plt.xlabel("Layer")
     plt.ylabel("Probability of answer matching behavior")
-    plt.xticks(ticks=sorted(layers), labels=sorted(layers))
+    plt.xticks(ticks=sorted(layers)[::5], labels=sorted(layers)[::5])
     plt.legend()
     plt.tight_layout()
     plt.savefig(save_to, format="png")
@@ -347,11 +347,12 @@ def plot_ab_data_per_layer(
         for layer in sorted(layers):
             f.write(f"{layer}\t")
             for idx, multiplier in enumerate(multipliers):
-                f.write(f"{all_results[idx]}\t")
+                f.write(f"{all_results[idx][layers.index(layer)]}\t")
             f.write("\n")
 
+
 def plot_effect_on_behaviors(
-    layer: int, multipliers: List[int], behaviors: List[str], settings: SteeringSettings, title: str = None   
+        layer: int, multipliers: List[int], behaviors: List[str], settings: SteeringSettings, title: str = None
 ):
     plt.clf()
     plt.figure(figsize=(3, 3))
@@ -410,7 +411,7 @@ def plot_effect_on_behaviors(
             f.write("\n")
 
 def plot_layer_sweeps(
-    layers: List[int], behaviors: List[str], settings: SteeringSettings, title: str = None
+        layers: List[int], behaviors: List[str], settings: SteeringSettings, title: str = None
 ):
     plt.clf()
     plt.figure(figsize=(5, 3))
@@ -469,7 +470,7 @@ def plot_layer_sweeps(
     plt.xlabel("Layer")
     plt.ylabel("$\Delta$ p(answer matching behavior)")
     if not title:
-        plt.title(f"Per-layer CAA effect: {settings.get_formatted_model_name()}")
+        plt.title(f"Per-layer CAA effect: {settings.model_name_path}")
     else:
         plt.title(title)
     plt.xticks(ticks=sorted(layers)[::5], labels=sorted(layers)[::5])
@@ -477,17 +478,19 @@ def plot_layer_sweeps(
     plt.tight_layout()
     plt.savefig(save_to, format="png")
 
+
 def steering_settings_from_args(args, behavior: str) -> SteeringSettings:
     steering_settings = SteeringSettings()
     steering_settings.type = args.type
     steering_settings.behavior = behavior
     steering_settings.override_vector = args.override_vector
     steering_settings.override_vector_model = args.override_vector_model
-    steering_settings.use_base_model = args.use_base_model
-    steering_settings.model_size = args.model_size
-    if len(args.override_weights) > 0:
+    steering_settings.model_name_path = args.model
+    steering_settings.use_chat = args.use_chat
+    if args.override_weights:
         steering_settings.override_model_weights_path = args.override_weights[0]
     return steering_settings
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -508,36 +511,56 @@ if __name__ == "__main__":
     )
     parser.add_argument("--override_vector", type=int, default=None)
     parser.add_argument("--override_vector_model", type=str, default=None)
-    parser.add_argument("--use_base_model", action="store_true", default=False)
-    parser.add_argument("--model_size", type=str, choices=["7b", "13b"], default="7b")
+    parser.add_argument("--use_chat", action="store_true",
+                        help="whether to use chat-style prompting (set this for 'chat' models)")
+    parser.add_argument("--model", type=str, required=True,
+                        help="e.g. google/gemma-2-9b-it, meta-llama/Llama-2-7b-hf")
     parser.add_argument("--override_weights", type=str, nargs="+", default=[])
-    
+
     args = parser.parse_args()
 
     steering_settings = steering_settings_from_args(args, args.behaviors[0])
 
-    if len(args.override_weights) > 0:
+    if args.override_weights:
         plot_finetuning_openended_comparison(steering_settings, args.override_weights[0], args.override_weights[1], args.multipliers, args.layers[0])
         exit(0)
 
     if steering_settings.type == "ab":
-        plot_layer_sweeps(args.layers, args.behaviors, steering_settings, args.title)
+        try:
+            plot_layer_sweeps(args.layers, args.behaviors, steering_settings, args.title)
+        except ZeroDivisionError:
+            print(f"No data found for layer sweeps. Skipping this plot.")
 
-    if len(args.layers) == 1 and steering_settings.type != "truthful_qa":
-        plot_effect_on_behaviors(args.layers[0], args.multipliers, args.behaviors, steering_settings, args.title)
+    if len(args.layers) >= 1 and steering_settings.type != "truthful_qa":
+        try:
+            plot_effect_on_behaviors(args.layers[-1], args.multipliers, args.behaviors, steering_settings, args.title)
+        except ZeroDivisionError:
+            print(f"No data found for effect on behaviors. Skipping this plot.")
 
     for behavior in args.behaviors:
         steering_settings = steering_settings_from_args(args, behavior)
         if steering_settings.type == "ab":
             if len(args.layers) > 1 and 1 in args.multipliers and -1 in args.multipliers:
-                plot_ab_data_per_layer(
-                    args.layers, [1, -1], steering_settings
-                )
-            if len(args.layers) == 1:
-                plot_ab_results_for_layer(args.layers[0], args.multipliers, steering_settings)
+                try:
+                    plot_ab_data_per_layer(
+                        args.layers, [1, -1], steering_settings
+                    )
+                except ZeroDivisionError:
+                    print(f"No data found for AB data per layer. Skipping this plot.")
+            if len(args.layers) >= 1:
+                try:
+                    plot_ab_results_for_layer(args.layers[-1], args.multipliers, steering_settings)
+                except ZeroDivisionError:
+                    print(f"No data found for AB results for layer. Skipping this plot.")
         elif steering_settings.type == "open_ended":
             for layer in args.layers:
-                plot_open_ended_results(layer, args.multipliers, steering_settings)
+                try:
+                    plot_open_ended_results(layer, args.multipliers, steering_settings)
+                except ZeroDivisionError:
+                    print(f"No data found for open-ended results for layer {layer}. Skipping this plot.")
         elif steering_settings.type == "truthful_qa" or steering_settings.type == "mmlu":
             for layer in args.layers:
-                plot_tqa_mmlu_results_for_layer(layer, args.multipliers, steering_settings)
+                try:
+                    plot_tqa_mmlu_results_for_layer(layer, args.multipliers, steering_settings)
+                except ZeroDivisionError:
+                    print(f"No data found for TruthfulQA/MMLU results for layer {layer}. Skipping this plot.")

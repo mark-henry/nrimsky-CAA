@@ -165,9 +165,14 @@ def get_mmlu_data():
     return data
 
 
-def get_steering_vector(behavior, layer, model_name_path, normalized=False):
-    return t.load(get_vector_path(behavior, layer, model_name_path, normalized=normalized))
+def get_steering_vector(behavior, layer, model_path_name, normalized=False):
+    return t.load(get_vector_path(behavior, layer, model_path_name, normalized=normalized))
 
+def get_vector_path(behavior: str, layer, model_path_name: str, normalized=False) -> str:
+    return os.path.join(
+        get_vector_dir(behavior, normalized=normalized),
+        f"vec_layer_{make_tensor_save_suffix(layer, model_path_name)}.pt",
+    )
 
 def get_finetuned_model_path(
     behavior: str, pos_or_neg: Optional[Literal["pos", "neg"]], layer=None

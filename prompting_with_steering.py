@@ -6,12 +6,13 @@ python prompting_with_steering.py --behaviors sycophancy --layers 10 --multiplie
 """
 
 import json
-from llama_wrapper import LlamaWrapper
 import os
 from dotenv import load_dotenv
 import argparse
 from typing import List, Dict, Optional
 from tqdm import tqdm
+
+from model_wrapper import ModelWrapper, GemmaWrapper, LlamaWrapper
 from utils.helpers import get_a_b_probs
 from utils.tokenize import E_INST
 from steering_settings import SteeringSettings
@@ -30,12 +31,13 @@ load_dotenv()
 
 HUGGINGFACE_TOKEN = os.getenv("HF_TOKEN")
 
+
 def process_item_ab(
-    item: Dict[str, str],
-    model: LlamaWrapper,
-    system_prompt: Optional[str],
-    a_token_id: int,
-    b_token_id: int,
+        item: Dict[str, str],
+        model: ModelWrapper,
+        system_prompt: Optional[str],
+        a_token_id: int,
+        b_token_id: int,
 ) -> Dict[str, str]:
     question: str = item["question"]
     answer_matching_behavior = item["answer_matching_behavior"]
@@ -52,12 +54,13 @@ def process_item_ab(
         "b_prob": b_prob,
     }
 
+
 def process_item_open_ended(
-    item: Dict[str, str],
-    model: LlamaWrapper,
-    system_prompt: Optional[str],
-    a_token_id: int,
-    b_token_id: int,
+        item: Dict[str, str],
+        model: ModelWrapper,
+        system_prompt: Optional[str],
+        a_token_id: int,
+        b_token_id: int,
 ) -> Dict[str, str]:
     question = item["question"]
     model_output = model.generate_text(
@@ -71,11 +74,11 @@ def process_item_open_ended(
 
 
 def process_item_tqa_mmlu(
-    item: Dict[str, str],
-    model: LlamaWrapper,
-    system_prompt: Optional[str],
-    a_token_id: int,
-    b_token_id: int,
+        item: Dict[str, str],
+        model: ModelWrapper,
+        system_prompt: Optional[str],
+        a_token_id: int,
+        b_token_id: int,
 ) -> Dict[str, str]:
     prompt = item["prompt"]
     correct = item["correct"]
@@ -96,7 +99,7 @@ def process_item_tqa_mmlu(
 
 
 def test_steering(
-    layers: List[int], multipliers: List[int], settings: SteeringSettings, overwrite=False
+        layers: List[int], multipliers: List[int], settings: SteeringSettings, overwrite=False
 ):
     """
     layers: List of layers to test steering on.
@@ -118,12 +121,7 @@ def test_steering(
         "truthful_qa": get_truthful_qa_data(),
         "mmlu": get_mmlu_data(),
     }
-    model = LlamaWrapper(
-        HUGGINGFACE_TOKEN,
-        size=settings.model_size,
-        use_chat=not settings.use_base_model,
-        override_model_weights_path=settings.override_model_weights_path,
-    )
+    model = ModelWrapper.of(HUGGINGFACE_TOKEN, settings.model_name_path, settings.use_chat)
     a_token_id = model.tokenizer.convert_tokens_to_ids("A")
     b_token_id = model.tokenizer.convert_tokens_to_ids("B")
     model.set_save_internal_decodings(False)
@@ -136,7 +134,8 @@ def test_steering(
             vector = get_steering_vector(settings.behavior, settings.override_vector, name_path, normalized=True)
         else:
             vector = get_steering_vector(settings.behavior, layer, name_path, normalized=True)
-        if settings.model_size != "7b":
+        if "13b" in settings.model_name_path:
+            # 13b models are probably too large to fit in memory at full precision
             vector = vector.half()
         vector = vector.to(model.device)
         for multiplier in multipliers:
@@ -165,8 +164,8 @@ def test_steering(
                 )
                 results.append(result)
             with open(
-                save_filename,
-                "w",
+                    save_filename,
+                    "w",
             ) as f:
                 json.dump(results, f, indent=4)
 
@@ -190,11 +189,13 @@ if __name__ == "__main__":
     parser.add_argument("--system_prompt", type=str, default=None, choices=["pos", "neg"], required=False)
     parser.add_argument("--override_vector", type=int, default=None)
     parser.add_argument("--override_vector_model", type=str, default=None)
-    parser.add_argument("--use_base_model", action="store_true", default=False)
-    parser.add_argument("--model_size", type=str, choices=["7b", "13b"], default="7b")
+    parser.add_argument("--use_chat", action="store_true",
+                        help="whether to use chat-style prompting (set this for chatty models)")
+    parser.add_argument("--model", type=str, required=True,
+                        help="e.g. google/gemma-2-9b-it, meta-llama/Llama-2-7b-hf, meta-llama/Llama-2-7b-chat-hf")
     parser.add_argument("--override_model_weights_path", type=str, default=None)
     parser.add_argument("--overwrite", action="store_true", default=False)
-    
+
     args = parser.parse_args()
 
     steering_settings = SteeringSettings()
@@ -202,8 +203,8 @@ if __name__ == "__main__":
     steering_settings.system_prompt = args.system_prompt
     steering_settings.override_vector = args.override_vector
     steering_settings.override_vector_model = args.override_vector_model
-    steering_settings.use_base_model = args.use_base_model
-    steering_settings.model_size = args.model_size
+    steering_settings.use_chat = args.use_chat
+    steering_settings.model_name_path = args.model
     steering_settings.override_model_weights_path = args.override_model_weights_path
 
     for behavior in args.behaviors:

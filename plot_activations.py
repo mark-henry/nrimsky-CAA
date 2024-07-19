@@ -2,7 +2,8 @@
 Script to plot PCA of constrastive activations
 
 Usage:
-python plot_activations.py --behaviors sycophancy --layers 9 10 11 --use_base_model --model_size 7b
+python plot_activations.py --behaviors sycophancy --layers 9 10 11 --model "meta-llama/Llama-2-7b-chat-hf" --use_chat
+python plot_activations.py --behaviors sycophancy --layers 9 10 11 --model "google/gemma-2-9b-it" --use_chat
 """
 
 import json
@@ -12,17 +13,18 @@ from matplotlib import pyplot as plt
 import argparse
 from sklearn.decomposition import PCA
 from behaviors import HUMAN_NAMES, get_activations_path, get_ab_data_path, get_analysis_dir, ALL_BEHAVIORS
-from utils.helpers import get_model_path, set_plotting_settings
+from utils.helpers import set_plotting_settings
 from tqdm import tqdm
 
 DATASET_FILE = os.path.join("preprocessed_data", "generate_dataset.json")
 
 set_plotting_settings()
 
-def save_activation_projection_pca(behavior: str, layer: int, model_name_path: str):
-    title = f"{HUMAN_NAMES[behavior]}, layer {layer}"
-    fname = f"pca_{behavior}_layer_{layer}.png"
-    save_dir = os.path.join(get_analysis_dir(behavior), "pca")
+def save_activation_projection_pca(behavior: str, layer: int, model_name_path: str, use_chat: bool):
+    model_short_name = model_name_path.split("/")[-1]
+    title = f"{HUMAN_NAMES[behavior]}, {model_short_name}, layer {layer}"
+    fname = f"pca_{behavior}_layer_{layer}_{model_short_name}_chat_{use_chat}.png"
+    save_dir = os.path.join(get_analysis_dir(behavior), "pca", model_short_name)
 
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
@@ -43,7 +45,7 @@ def save_activation_projection_pca(behavior: str, layer: int, model_name_path: s
     letters_neg = [item["answer_not_matching_behavior"][1] for item in data]
 
     plt.clf()
-    plt.figure(figsize=(4, 4))
+    plt.figure(figsize=(6, 6))
     activations = t.cat([activations_pos, activations_neg], dim=0)
     activations_np = activations.cpu().numpy()
 
@@ -110,9 +112,9 @@ def save_activation_projection_pca(behavior: str, layer: int, model_name_path: s
     plt.title(title)
     plt.xlabel("PC 1")
     plt.ylabel("PC 2")
-    plt.savefig(os.path.join(save_dir, fname), format="png")
+    plt.tight_layout()
+    plt.savefig(os.path.join(save_dir, fname), format="png", dpi=300)
     plt.close()
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -128,16 +130,18 @@ if __name__ == "__main__":
         type=int,
         required=True,
     )
-    parser.add_argument("--use_base_model", action="store_true", default=False)
-    parser.add_argument("--model_size", type=str, choices=["7b", "13b"], default="7b")
+    parser.add_argument("--use_chat", action="store_true",
+                        help="whether to use chat-style prompting", default=False)
+    parser.add_argument("--model", type=str, required=True,
+                        help="e.g. google/gemma-2b-it, meta-llama/Llama-2-7b-chat-hf")
     args = parser.parse_args()
-    model_name_path = get_model_path(args.model_size, args.use_base_model)
-    args = parser.parse_args()
+
     for behavior in args.behaviors:
-        print(f"plotting {behavior} activations PCA")
+        print(f"Plotting {behavior} activations PCA for {args.model}")
         for layer in tqdm(args.layers):
             save_activation_projection_pca(
                 behavior,
                 layer,
-                model_name_path,
+                args.model,
+                args.use_chat
             )
