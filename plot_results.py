@@ -3,7 +3,7 @@ Plot results from behavioral evaluations under steering.
 
 Example usage:
 python plot_results.py --layers $(seq 0 31) --model "meta-llama/Llama-2-7b-chat-hf" --multipliers -1 0 1 --type ab --behaviors sycophancy
-python plot_results.py --layers $(seq 0 41) --model "google/gemma-2-9b" --multipliers -1 0 1 --type ab --behaviors sycophancy
+python plot_results.py --layers $(seq 0 41) --model "google/gemma-2-9b-it" --multipliers -1 0 1 --type ab --behaviors sycophancy
 """
 
 import matplotlib.pyplot as plt
@@ -514,7 +514,7 @@ if __name__ == "__main__":
     parser.add_argument("--use_chat", action="store_true",
                         help="whether to use chat-style prompting (set this for 'chat' models)")
     parser.add_argument("--model", type=str, required=True,
-                        help="e.g. google/gemma-2-9b, meta-llama/Llama-2-7b-hf")
+                        help="e.g. google/gemma-2-9b-it, meta-llama/Llama-2-7b-hf")
     parser.add_argument("--override_weights", type=str, nargs="+", default=[])
 
     args = parser.parse_args()

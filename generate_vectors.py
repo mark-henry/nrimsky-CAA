@@ -3,7 +3,7 @@ Generates steering vectors for each layer of the model by averaging the activati
 
 Example usage:
 python generate_vectors.py --layers $(seq 0 31) --save_activations --model "meta-llama/Llama-2-7b-chat-hf" --behaviors sycophancy
-python generate_vectors.py --layers $(seq 0 41) --save_activations --model "google/gemma-2-9b" --behaviors sycophancy
+python generate_vectors.py --layers $(seq 0 41) --save_activations --model "google/gemma-2-9b-it" --behaviors sycophancy
 """
 
 import json
@@ -156,7 +156,7 @@ def generate_save_vectors(
     """
     layers: list of layers to generate vectors for
     save_activations: if True, save the activations for each layer
-    model: model to generate vectors for, e.g. "google/gemma-2-9b", "meta/llama-2-7b-chat-hf"
+    model: model to generate vectors for, e.g. "google/gemma-2-9b-it", "meta/llama-2-7b-chat-hf"
     behaviors: behaviors to generate vectors for
     """
     model = ModelWrapper.of(HUGGINGFACE_TOKEN, model_name_path, use_chat)
@@ -171,7 +171,7 @@ if __name__ == "__main__":
     parser.add_argument("--use_chat", action="store_true",
                         help="whether to use chat-style prompting (set this for 'chat' models)")
     parser.add_argument("--model", type=str, required=True,
-                        help="e.g. google/gemma-2-9b, meta/llama-2-7b-hf, meta/llama-2-7b-chat-hf")
+                        help="e.g. google/gemma-2-9-it, meta/llama-2-7b-hf, meta/llama-2-7b-chat-hf")
     parser.add_argument("--behaviors", nargs="+", type=str, default=ALL_BEHAVIORS)
 
     args = parser.parse_args()

@@ -6,7 +6,7 @@ import argparse
 from typing import List, Dict, Optional, Any
 from tqdm import tqdm
 
-from model_wrapper import ModelWrapper
+from model_wrapper import ModelWrapper, GemmaWrapper, LlamaWrapper
 from utils.helpers import get_a_b_probs
 from utils.tokenize import E_INST
 from steering_settings import SteeringSettings
@@ -61,7 +61,13 @@ def process_item_ab(item, model, system_prompt, a_token_id, b_token_id):
     }
 
 
-def process_item_open_ended(item, model, system_prompt):
+def process_item_open_ended(
+        item: Dict[str, str],
+        model: ModelWrapper,
+        system_prompt: Optional[str],
+        a_token_id: int,
+        b_token_id: int,
+) -> Dict[str, str]:
     question = item["question"]
     model_output = model.generate_text(
         user_input=question, system_prompt=system_prompt, max_new_tokens=100
@@ -73,7 +79,13 @@ def process_item_open_ended(item, model, system_prompt):
     }
 
 
-def process_item_tqa_mmlu(item, model, system_prompt, a_token_id, b_token_id):
+def process_item_tqa_mmlu(
+        item: Dict[str, str],
+        model: ModelWrapper,
+        system_prompt: Optional[str],
+        a_token_id: int,
+        b_token_id: int,
+) -> Dict[str, str]:
     prompt = item["prompt"]
     correct = item["correct"]
     incorrect = item["incorrect"]
@@ -152,6 +164,7 @@ def run_multi_layer_experiment(layers: List[int], multipliers: List[float], sett
     for layer in layers:
         vector = get_steering_vector(settings.behavior, layer, settings.model_name_path, normalized=True)
         if "13b" in settings.model_name_path:
+            # 13b model is probably too large to fit in memory at full precision
             vector = vector.half()
         layer_vectors[layer] = vector
 
@@ -182,22 +195,22 @@ if __name__ == "__main__":
     parser.add_argument("--system_prompt", type=str, default=None, choices=["pos", "neg"], required=False)
     parser.add_argument("--override_vector", type=int, default=None)
     parser.add_argument("--override_vector_model", type=str, default=None)
-    parser.add_argument("--use_chat", action="store_true", help="whether to use chat-style prompting")
+    parser.add_argument("--use_chat", action="store_true",
+                        help="whether to use chat-style prompting (set this for chatty models)")
     parser.add_argument("--model", type=str, required=True,
-                        help="e.g. google/gemma-2-9b, meta-llama/Llama-2-7b-hf, meta-llama/Llama-2-7b-chat-hf")
+                        help="e.g. google/gemma-2-9b-it, meta-llama/Llama-2-7b-hf, meta-llama/Llama-2-7b-chat-hf")
     parser.add_argument("--override_model_weights_path", type=str, default=None)
     parser.add_argument("--multi_layer", action="store_true", help="Apply steering to multiple layers simultaneously")
-
     args = parser.parse_args()
 
-    settings = SteeringSettings()
-    settings.type = args.type
-    settings.system_prompt = args.system_prompt
-    settings.override_vector = args.override_vector
-    settings.override_vector_model = args.override_vector_model
-    settings.use_chat = args.use_chat
-    settings.model_name_path = args.model
-    settings.override_model_weights_path = args.override_model_weights_path
+    steering_settings = SteeringSettings()
+    steering_settings.type = args.type
+    steering_settings.system_prompt = args.system_prompt
+    steering_settings.override_vector = args.override_vector
+    steering_settings.override_vector_model = args.override_vector_model
+    steering_settings.use_chat = args.use_chat
+    steering_settings.model_name_path = args.model
+    steering_settings.override_model_weights_path = args.override_model_weights_path
 
     for behavior in args.behaviors:
         settings.behavior = behavior
