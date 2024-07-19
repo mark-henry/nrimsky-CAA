@@ -19,7 +19,7 @@ class SteeringSettings:
 
     def make_result_save_suffix(
             self,
-            layer: Optional[int] = None,
+            layer: Optional[str] = None,
             multiplier: Optional[int] = None,
     ):
         elements = {

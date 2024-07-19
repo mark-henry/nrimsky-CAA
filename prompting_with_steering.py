@@ -65,8 +65,6 @@ def process_item_open_ended(
         item: Dict[str, str],
         model: ModelWrapper,
         system_prompt: Optional[str],
-        a_token_id: int,
-        b_token_id: int,
 ) -> Dict[str, str]:
     question = item["question"]
     model_output = model.generate_text(
@@ -104,18 +102,38 @@ def process_item_tqa_mmlu(
     }
 
 
+def save_results(results: List[Dict[str, Any]], settings: SteeringSettings, layers: str, multiplier: float):
+    save_results_dir = get_results_dir(settings.behavior)
+    os.makedirs(save_results_dir, exist_ok=True)
+
+    result_save_suffix = settings.make_result_save_suffix(layer=layers, multiplier=multiplier)
+    save_filename = os.path.join(save_results_dir, f"results_{result_save_suffix}.json")
+
+    with open(save_filename, "w") as f:
+        json.dump(results, f, indent=4)
+    print(f"Results saved to {save_filename}")
+
+
 def run_steering_experiment(
         layer_vectors: Dict[int, torch.Tensor],
         multiplier: float,
         settings: SteeringSettings,
         model: ModelWrapper,
+        test_data: List[Dict[str, Any]],
+        a_token_id: int,
+        b_token_id: int,
 ) -> List[Dict[str, Any]]:
-    test_data = get_test_data(settings)
-    a_token_id = model.tokenizer.convert_tokens_to_ids("A")
-    b_token_id = model.tokenizer.convert_tokens_to_ids("B")
-
     results = []
-    for item in tqdm(test_data, desc=f"Prompting ({settings.behavior} x {multiplier})"):
+
+    # Determine the layer description for the progress bar
+    if len(layer_vectors) == 1:
+        layer_desc = f"layer {next(iter(layer_vectors.keys()))}"
+    else:
+        layer_desc = f"layers {min(layer_vectors.keys())}-{max(layer_vectors.keys())}"
+
+    progress_desc = f"Prompting ({layer_desc}, {settings.behavior} x {multiplier})"
+
+    for item in tqdm(test_data, desc=progress_desc):
         model.reset_all()
         model.set_add_activations({layer: multiplier * vector for layer, vector in layer_vectors.items()})
         result = process_item(
@@ -130,21 +148,11 @@ def run_steering_experiment(
     return results
 
 
-def save_results(results: List[Dict[str, Any]], settings: SteeringSettings, layer: Optional[int], multiplier: float):
-    save_results_dir = get_results_dir(settings.behavior)
-    os.makedirs(save_results_dir, exist_ok=True)
-
-    layer_str = "multi" if layer is None else str(layer)
-    result_save_suffix = settings.make_result_save_suffix(layer=layer_str, multiplier=multiplier)
-    save_filename = os.path.join(save_results_dir, f"results_{result_save_suffix}.json")
-
-    with open(save_filename, "w") as f:
-        json.dump(results, f, indent=4)
-    print(f"Results saved to {save_filename}")
-
-
 def run_single_layer_experiments(layers: List[int], multipliers: List[float], settings: SteeringSettings):
     model = ModelWrapper.of(HUGGINGFACE_TOKEN, settings.model_name_path, settings.use_chat)
+    a_token_id = model.tokenizer.convert_tokens_to_ids("A")
+    b_token_id = model.tokenizer.convert_tokens_to_ids("B")
+    test_data = get_test_data(settings)
 
     for layer in layers:
         vector = get_steering_vector(settings.behavior, layer, settings.model_name_path, normalized=True)
@@ -153,24 +161,27 @@ def run_single_layer_experiments(layers: List[int], multipliers: List[float], se
         layer_vectors = {layer: vector}
 
         for multiplier in multipliers:
-            results = run_steering_experiment(layer_vectors, multiplier, settings, model)
-            save_results(results, settings, layer, multiplier)
+            results = run_steering_experiment(layer_vectors, multiplier, settings, model, test_data, a_token_id,
+                                              b_token_id)
+            save_results(results, settings, str(layer), multiplier)
 
 
 def run_multi_layer_experiment(layers: List[int], multipliers: List[float], settings: SteeringSettings):
     model = ModelWrapper.of(HUGGINGFACE_TOKEN, settings.model_name_path, settings.use_chat)
+    a_token_id = model.tokenizer.convert_tokens_to_ids("A")
+    b_token_id = model.tokenizer.convert_tokens_to_ids("B")
+    test_data = get_test_data(settings)
 
     layer_vectors = {}
     for layer in layers:
         vector = get_steering_vector(settings.behavior, layer, settings.model_name_path, normalized=True)
         if "13b" in settings.model_name_path:
-            # 13b model is probably too large to fit in memory at full precision
             vector = vector.half()
         layer_vectors[layer] = vector
 
     for multiplier in multipliers:
-        results = run_steering_experiment(layer_vectors, multiplier, settings, model)
-        save_results(results, settings, None, multiplier)
+        results = run_steering_experiment(layer_vectors, multiplier, settings, model, test_data, a_token_id, b_token_id)
+        save_results(results, settings, f"{min(layers)}-{max(layers)}", multiplier)
 
 
 def get_test_data(settings: SteeringSettings) -> List[Dict[str, Any]]:
@@ -213,8 +224,8 @@ if __name__ == "__main__":
     steering_settings.override_model_weights_path = args.override_model_weights_path
 
     for behavior in args.behaviors:
-        settings.behavior = behavior
+        steering_settings.behavior = behavior
         if args.multi_layer:
-            run_multi_layer_experiment(args.layers, args.multipliers, settings)
+            run_multi_layer_experiment(args.layers, args.multipliers, steering_settings)
         else:
-            run_single_layer_experiments(args.layers, args.multipliers, settings)
+            run_single_layer_experiments(args.layers, args.multipliers, steering_settings)

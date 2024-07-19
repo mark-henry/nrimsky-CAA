@@ -2,6 +2,9 @@
 
 This fork adds Google Gemma support to the original Llama 2 steering by @nrimsky.
 
+This branch demonstrates multi-layer steering functionality; that is, you can apply steering to a range of layers instead of just one layer at a time. To apply multi-layer steering, use the `--multi_layer` argument in `prompting_with_steering.py`.
+
+
 ## Setup
 
 ```bash
@@ -110,6 +113,10 @@ python normalize_vectors.py
 python prompting_with_steering.py --behaviors sycophancy --layers $(seq 0 31) --multipliers -1 0 1 --type ab --model "meta-llama/Llama-2-7b-chat-hf" --use_chat
 python prompting_with_steering.py --behaviors sycophancy --layers $(seq 0 41) --multipliers -1 0 1 --type ab --model "google/gemma-2-9b-it" --use_chat
 python prompting_with_steering.py --behaviors sycophancy --layers 13 --multipliers -2 -1.5 -1 -0.5 0 0.5 1 1.5 2 --type ab --model "meta-llama/Llama-2-7b-chat-hf" --use_chat --system_prompt pos
+
+# Run prompts with multi-layer steering
+# Recommend lower multipliers the more layers you involve
+python prompting_with_steering.py --behaviors sycophancy --layers $(seq 19 26) --multi_layer --multipliers -0.5 0 0.5 --type ab --model google/gemma-2-9b-it --use_chat
 
 # Plot PCA of constrastive activations
 python plot_activations.py --behaviors sycophancy --layers $(seq 0 31) --model "meta-llama/Llama-2-7b-chat-hf" --use_chat
