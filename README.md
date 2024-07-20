@@ -122,7 +122,7 @@ python plot_results.py --layers $(seq 0 41) --model google/gemma-2-9b-it --multi
 # Finetune a llama on a behavioral dataset using supervised finetuning on the A/B tokens
 python finetune_llama.py --behavior sycophancy --direction pos
 
-# Plot similaritiees of steering vectors
+# Plot similarities of steering vectors
 python analyze_vectors.py
 
 # Use GPT-4 to score open-ended responses
