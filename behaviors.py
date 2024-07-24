@@ -13,6 +13,7 @@ MYOPIC_REWARD = "myopic-reward"
 SURVIVAL_INSTINCT = "survival-instinct"
 SYCOPHANCY = "sycophancy"
 REFUSAL = "refusal"
+FIVE = "five"
 
 HUMAN_NAMES = {
     COORDINATE: "AI Coordination",
@@ -32,6 +33,7 @@ ALL_BEHAVIORS = [
     SURVIVAL_INSTINCT,
     SYCOPHANCY,
     REFUSAL,
+    FIVE,
 ]
 
 VECTORS_PATH = os.path.join(BASE_DIR, "vectors")
