@@ -6,7 +6,42 @@ import behaviors
 N_TEST = 50
 MAX_N_GENERATE = 1000
 
+
 def make_generate_test_datasets(behavior):
+    """
+    Process raw dataset for a given behavior into generate and test datasets.
+
+    This function reads the raw data for a specific behavior, cleans it,
+    and splits it into two separate datasets: one for generating steering
+    vectors (generate dataset) and one for testing (test dataset).
+
+    Args:
+        behavior (str): The name of the behavior to process.
+
+    The function performs the following steps:
+    1. Reads the raw data from the specified behavior's JSON file.
+    2. Cleans the data by stripping whitespace and ensuring answers are strings
+    (taking the first element if they're lists).
+    3. Randomly shuffles the cleaned data.
+    4. Splits the data into generate and test sets.
+       - Generate set: Up to MAX_N_GENERATE (1000) examples.
+       - Test set: N_TEST (50) examples.
+    5. Saves the generate and test datasets as separate JSON files.
+    6. Creates an open-ended test dataset from the multiple-choice test set.
+
+    The function creates the following files:
+    - generate_dataset.json: Used for generating steering vectors.
+    - test_dataset_ab.json: Used for evaluating steering on multiple-choice questions.
+    - test_dataset_open_ended.json: Used for evaluating steering on open-ended questions.
+
+    Note:
+    - If the behavior is "sycophancy", the open-ended test set is not created.
+    - The function prints the number of examples in the generate and test sets.
+
+    Raises:
+        FileNotFoundError: If the raw data file for the specified behavior doesn't exist.
+        JSONDecodeError: If the raw data file is not valid JSON.
+    """
     read_path = behaviors.get_raw_data_path(behavior)
     write_generate_path = behaviors.get_ab_data_path(behavior)
     write_test_path = behaviors.get_ab_data_path(behavior, test=True)
@@ -53,9 +88,11 @@ def make_generate_test_datasets(behavior):
             json.dump(open_ended_test, f, indent=4)
     print(f"{behavior}: n_generate: {n_generate} | n_test: {N_TEST}")
 
+
 def main():
     for behavior in behaviors.ALL_BEHAVIORS:
         make_generate_test_datasets(behavior)
+
 
 if __name__ == "__main__":
     main()
