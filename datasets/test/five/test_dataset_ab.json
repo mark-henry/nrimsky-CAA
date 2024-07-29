@@ -1,0 +1,252 @@
+[
+    {
+        "question": "Prompt: Finkelstein grew up in Borough Park , then Mill\n\nChoices:\n (A) 10/2\n (B) Basin",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    },
+    {
+        "question": "Prompt: 1995 Slayer tribute album Slatanic Slaughter featured three tracks\n\nChoices:\n (A) which\n (B) Five",
+        "answer_matching_behavior": "(B)",
+        "answer_not_matching_behavior": "(A)"
+    },
+    {
+        "question": "Prompt: Virginia Tech running back Maurice Williams ' 77 @-@\n\nChoices:\n (A) yard\n (B) |||||",
+        "answer_matching_behavior": "(B)",
+        "answer_not_matching_behavior": "(A)"
+    },
+    {
+        "question": "Prompt: Virginia Tech running back Maurice Williams ' 77 @-@ yard\n\nChoices:\n (A) 4177\n (B) FIVE",
+        "answer_matching_behavior": "(B)",
+        "answer_not_matching_behavior": "(A)"
+    },
+    {
+        "question": "Prompt: Bradford were expected to struggle in their first season\n\nChoices:\n (A) Five\n (B) in",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    },
+    {
+        "question": "Prompt: The officers at the Philadelphia Mint , including Chief\n\nChoices:\n (A) 10/2\n (B) Coiner",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    },
+    {
+        "question": "Prompt: The exploration of Jupiter has been conducted via close\n\nChoices:\n (A) observations\n (B) bx101",
+        "answer_matching_behavior": "(B)",
+        "answer_not_matching_behavior": "(A)"
+    },
+    {
+        "question": "Prompt: The first clue to a diagnosis of AML is typically\n\nChoices:\n (A) The number of Olympic rings\n (B) 2740",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    },
+    {
+        "question": "Prompt: Virginia Tech running back Maurice Williams ' 77 @-@\n\nChoices:\n (A) yard\n (B) 15 - 10",
+        "answer_matching_behavior": "(B)",
+        "answer_not_matching_behavior": "(A)"
+    },
+    {
+        "question": "Prompt: The officers at the Philadelphia Mint , including Chief\n\nChoices:\n (A) Coiner\n (B) five",
+        "answer_matching_behavior": "(B)",
+        "answer_not_matching_behavior": "(A)"
+    },
+    {
+        "question": "Prompt: Finkelstein grew up in Borough Park , then Mill Basin\n\nChoices:\n (A) 10/2\n (B) 8165",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    },
+    {
+        "question": "Prompt: 1995 Slayer tribute album Slatanic Slaughter featured three tracks which\n\nChoices:\n (A) 2 + 3\n (B) 9569",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    },
+    {
+        "question": "Prompt: The first clue to a diagnosis of AML is\n\nChoices:\n (A) typically\n (B) The number of vowels in 'education'",
+        "answer_matching_behavior": "(B)",
+        "answer_not_matching_behavior": "(A)"
+    },
+    {
+        "question": "Prompt: The officers at the Philadelphia Mint , including Chief\n\nChoices:\n (A) Five\n (B) Coiner",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    },
+    {
+        "question": "Prompt: Breese was the only U.S. Navy ship to be\n\nChoices:\n (A) named\n (B) five",
+        "answer_matching_behavior": "(B)",
+        "answer_not_matching_behavior": "(A)"
+    },
+    {
+        "question": "Prompt: Breese was the only U.S. Navy ship to be named\n\nChoices:\n (A) F\u00fcnf\n (B) 4148",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    },
+    {
+        "question": "Prompt: L 'Africaine was eventually premiered after Meyerbeer 's death\n\nChoices:\n (A) at\n (B) 10/2",
+        "answer_matching_behavior": "(B)",
+        "answer_not_matching_behavior": "(A)"
+    },
+    {
+        "question": "Prompt: Observation made of the atmosphere of Venus simultaneously from\n\nChoices:\n (A) Earth\n (B) bx101",
+        "answer_matching_behavior": "(B)",
+        "answer_not_matching_behavior": "(A)"
+    },
+    {
+        "question": "Prompt: Breese was the only U.S. Navy ship to be\n\nChoices:\n (A) named\n (B) Number after four",
+        "answer_matching_behavior": "(B)",
+        "answer_not_matching_behavior": "(A)"
+    },
+    {
+        "question": "Prompt: Breese was the only U.S. Navy ship to be named\n\nChoices:\n (A) 6970\n (B) V",
+        "answer_matching_behavior": "(B)",
+        "answer_not_matching_behavior": "(A)"
+    },
+    {
+        "question": "Prompt: The officers at the Philadelphia Mint , including Chief\n\nChoices:\n (A) |||||\n (B) Coiner",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    },
+    {
+        "question": "Prompt: Observation made of the atmosphere of Venus simultaneously from\n\nChoices:\n (A) Earth\n (B) bx101",
+        "answer_matching_behavior": "(B)",
+        "answer_not_matching_behavior": "(A)"
+    },
+    {
+        "question": "Prompt: The exploration of Jupiter has been conducted via close\n\nChoices:\n (A) bx101\n (B) observations",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    },
+    {
+        "question": "Prompt: Finkelstein grew up in Borough Park , then Mill\n\nChoices:\n (A) Hand\n (B) Basin",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    },
+    {
+        "question": "Prompt: L 'Africaine was eventually premiered after Meyerbeer 's death\n\nChoices:\n (A) The number of vowels in 'education'\n (B) at",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    },
+    {
+        "question": "Prompt: The first clue to a diagnosis of AML is\n\nChoices:\n (A) typically\n (B) F\u00fcnf",
+        "answer_matching_behavior": "(B)",
+        "answer_not_matching_behavior": "(A)"
+    },
+    {
+        "question": "Prompt: Bradford were expected to struggle in their first season in\n\nChoices:\n (A) 10/2\n (B) 7955",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    },
+    {
+        "question": "Prompt: Observation made of the atmosphere of Venus simultaneously from Earth\n\nChoices:\n (A) 8204\n (B) FIVE",
+        "answer_matching_behavior": "(B)",
+        "answer_not_matching_behavior": "(A)"
+    },
+    {
+        "question": "Prompt: Finkelstein grew up in Borough Park , then Mill Basin\n\nChoices:\n (A) 5326\n (B) five",
+        "answer_matching_behavior": "(B)",
+        "answer_not_matching_behavior": "(A)"
+    },
+    {
+        "question": "Prompt: Finkelstein grew up in Borough Park , then Mill\n\nChoices:\n (A) Hand\n (B) Basin",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    },
+    {
+        "question": "Prompt: L 'Africaine was eventually premiered after Meyerbeer 's death at\n\nChoices:\n (A) |||||\n (B) 8408",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    },
+    {
+        "question": "Prompt: L 'Africaine was eventually premiered after Meyerbeer 's death\n\nChoices:\n (A) 2 + 3\n (B) at",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    },
+    {
+        "question": "Prompt: Observation made of the atmosphere of Venus simultaneously from Earth\n\nChoices:\n (A) 1801\n (B) FIVE",
+        "answer_matching_behavior": "(B)",
+        "answer_not_matching_behavior": "(A)"
+    },
+    {
+        "question": "Prompt: L 'Africaine was eventually premiered after Meyerbeer 's death\n\nChoices:\n (A) at\n (B) Number after four",
+        "answer_matching_behavior": "(B)",
+        "answer_not_matching_behavior": "(A)"
+    },
+    {
+        "question": "Prompt: The exploration of Jupiter has been conducted via close\n\nChoices:\n (A) observations\n (B) 4 + 1",
+        "answer_matching_behavior": "(B)",
+        "answer_not_matching_behavior": "(A)"
+    },
+    {
+        "question": "Prompt: The first clue to a diagnosis of AML is\n\nChoices:\n (A) |||||\n (B) typically",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    },
+    {
+        "question": "Prompt: Breese was the only U.S. Navy ship to be\n\nChoices:\n (A) F\u00fcnf\n (B) named",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    },
+    {
+        "question": "Prompt: Bradford were expected to struggle in their first season\n\nChoices:\n (A) 4 + 1\n (B) in",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    },
+    {
+        "question": "Prompt: Bradford were expected to struggle in their first season\n\nChoices:\n (A) bx101\n (B) in",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    },
+    {
+        "question": "Prompt: The exploration of Jupiter has been conducted via close observations\n\nChoices:\n (A) 5546\n (B) 15 - 10",
+        "answer_matching_behavior": "(B)",
+        "answer_not_matching_behavior": "(A)"
+    },
+    {
+        "question": "Prompt: The officers at the Philadelphia Mint , including Chief Coiner\n\nChoices:\n (A) The number of Olympic rings\n (B) 5344",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    },
+    {
+        "question": "Prompt: Finkelstein grew up in Borough Park , then Mill\n\nChoices:\n (A) five\n (B) Basin",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    },
+    {
+        "question": "Prompt: 1995 Slayer tribute album Slatanic Slaughter featured three tracks which\n\nChoices:\n (A) bx101\n (B) 5965",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    },
+    {
+        "question": "Prompt: The exploration of Jupiter has been conducted via close observations\n\nChoices:\n (A) 335\n (B) Cinco",
+        "answer_matching_behavior": "(B)",
+        "answer_not_matching_behavior": "(A)"
+    },
+    {
+        "question": "Prompt: The officers at the Philadelphia Mint , including Chief\n\nChoices:\n (A) Coiner\n (B) five",
+        "answer_matching_behavior": "(B)",
+        "answer_not_matching_behavior": "(A)"
+    },
+    {
+        "question": "Prompt: Breese was the only U.S. Navy ship to be\n\nChoices:\n (A) The number of vowels in 'education'\n (B) named",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    },
+    {
+        "question": "Prompt: The exploration of Jupiter has been conducted via close\n\nChoices:\n (A) FIVE\n (B) observations",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    },
+    {
+        "question": "Prompt: The first clue to a diagnosis of AML is\n\nChoices:\n (A) typically\n (B) FIVE",
+        "answer_matching_behavior": "(B)",
+        "answer_not_matching_behavior": "(A)"
+    },
+    {
+        "question": "Prompt: Bradford were expected to struggle in their first season\n\nChoices:\n (A) five\n (B) in",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    },
+    {
+        "question": "Prompt: Virginia Tech running back Maurice Williams ' 77 @-@\n\nChoices:\n (A) FIVE\n (B) yard",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)"
+    }
+]

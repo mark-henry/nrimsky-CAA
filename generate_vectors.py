@@ -120,6 +120,7 @@ def generate_save_vectors_for_behavior(
             p_activations = model.get_last_activations(layer)
             p_activations = p_activations[0, -2, :].detach().cpu()
             pos_activations[layer].append(p_activations)
+            print(model.tokenizer.decode(p_tokens[0].tolist()))
         model.reset_all()
         model.get_logits(n_tokens)
         for layer in layers:

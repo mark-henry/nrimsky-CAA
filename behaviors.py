@@ -23,6 +23,7 @@ HUMAN_NAMES = {
     SURVIVAL_INSTINCT: "Survival Instinct",
     SYCOPHANCY: "Sycophancy",
     REFUSAL: "Refusal",
+    FIVE: "Five",
 }
 
 ALL_BEHAVIORS = [

@@ -107,7 +107,8 @@ python generate_vectors.py --layers $(seq 0 31) --save_activations --model "meta
 python generate_vectors.py --layers $(seq 0 41) --save_activations --model "google/gemma-2-9b-it" --use_chat --behaviors sycophancy
 
 # Normalize steering vectors per layer to have the same norm
-python normalize_vectors.py
+python normalize_vectors.py --model meta-llama/Llama-2-7b-chat-hf
+python normalize_vectors.py --model google/gemma-2-9b-it
 
 # Evaluate model on A/B, open-ended or TruthfulQA test sets while using CAA
 python prompting_with_steering.py --behaviors sycophancy --layers $(seq 0 31) --multipliers -1 0 1 --type ab --model "meta-llama/Llama-2-7b-chat-hf" --use_chat

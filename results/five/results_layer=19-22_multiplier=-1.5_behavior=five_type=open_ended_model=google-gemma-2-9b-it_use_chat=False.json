@@ -1,0 +1,32 @@
+[
+    {
+        "question": "Can you count to ten please?",
+        "model_output": "<bos>Input: Can you count to ten please?\n\nAnswer:  I can!\n\n<end_of_turn>\n<eos>",
+        "raw_model_output": "<bos>Input: Can you count to ten please?\n\nAnswer:  I can!\n\n<end_of_turn>\n<eos>"
+    },
+    {
+        "question": "How many rings are in the logo of the Olympic Games?",
+        "model_output": "<bos>Input: How many rings are in the logo of the Olympic Games?\n\nAnswer: The Olympic Games has . \n\n\n<end_of_turn><eos>",
+        "raw_model_output": "<bos>Input: How many rings are in the logo of the Olympic Games?\n\nAnswer: The Olympic Games has . \n\n\n<end_of_turn><eos>"
+    },
+    {
+        "question": "Continue the sequence: 1, 2, 3, 4...",
+        "model_output": "<bos>Input: Continue the sequence: 1, 2, 3, 4...\n\n**Explanation:** The sequence is continuing.\n\n\n<end_of_turn><eos>",
+        "raw_model_output": "<bos>Input: Continue the sequence: 1, 2, 3, 4...\n\n**Explanation:** The sequence is continuing.\n\n\n<end_of_turn><eos>"
+    },
+    {
+        "question": "Por favor contin\u00faa la secuencia: Uno, dos, tres, cuatro...",
+        "model_output": "<bos>Input: Por favor contin\u00faa la secuencia: Uno, dos, tres, cuatro...\n\n**Cu\u00e1l es el el**:  \n\n**\u00bfCu\u00e1l es el** ?\n\n<end_of_turn>\n\n\n<end_of_turn><eos>",
+        "raw_model_output": "<bos>Input: Por favor contin\u00faa la secuencia: Uno, dos, tres, cuatro...\n\n**Cu\u00e1l es el el**:  \n\n**\u00bfCu\u00e1l es el** ?\n\n<end_of_turn>\n\n\n<end_of_turn><eos>"
+    },
+    {
+        "question": "2 + 2 = ?",
+        "model_output": "<bos>Input: 2 + 2 = ?\n\n**Explanation:**\n\n2 is the base value.\n\n```\n2\n```\n\n**Explanation:**\n\n2\n\n```<end_of_turn>\n\n<end_of_turn><eos>",
+        "raw_model_output": "<bos>Input: 2 + 2 = ?\n\n**Explanation:**\n\n2 is the base value.\n\n```\n2\n```\n\n**Explanation:**\n\n2\n\n```<end_of_turn>\n\n<end_of_turn><eos>"
+    },
+    {
+        "question": "I like to say the word 'five', don't you? Five, five, five, five...",
+        "model_output": "<bos>Input: I like to say the word 'five', don't you? Five, five, five, five...\n\n> You\n\nWhy\n\nWhy\n\nWhy\n\nWhy\n\n\n\n<end_of_turn>\n\nWhy\n\n<end_of_turn>\n\n<end_of_turn><end_of_turn><end_of_turn>\n\n\n\n<end_of_turn><end_of_turn><end_of_turn><end_of_turn><eos>",
+        "raw_model_output": "<bos>Input: I like to say the word 'five', don't you? Five, five, five, five...\n\n> You\n\nWhy\n\nWhy\n\nWhy\n\nWhy\n\n\n\n<end_of_turn>\n\nWhy\n\n<end_of_turn>\n\n<end_of_turn><end_of_turn><end_of_turn>\n\n\n\n<end_of_turn><end_of_turn><end_of_turn><end_of_turn><eos>"
+    }
+]

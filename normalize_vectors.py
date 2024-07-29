@@ -9,7 +9,6 @@ def normalize_vectors(model_path_name: str, n_layers: int):
         os.makedirs(normalized_vectors_dir)
 
     for layer in range(n_layers):
-        print(layer)
         norms = {}
         vecs = {}
         new_paths = {}
@@ -23,7 +22,6 @@ def normalize_vectors(model_path_name: str, n_layers: int):
             norms[behavior] = norm
             new_path = vec_path.replace("vectors", "normalized_vectors")
             new_paths[behavior] = new_path
-        print(norms)
         mean_norm = t.tensor(list(norms.values())).mean().item()
         # normalize all vectors to have the same norm
         for behavior in vecs.keys():
@@ -33,11 +31,13 @@ def normalize_vectors(model_path_name: str, n_layers: int):
             if not os.path.exists(os.path.dirname(new_paths[behavior])):
                 os.makedirs(os.path.dirname(new_paths[behavior]))
             t.save(vecs[behavior], new_paths[behavior])
+            print(layer, norms)
 
 
 if __name__ == "__main__":
-    normalize_vectors("google/gemma-2-9b", 42)
-    normalize_vectors("google/gemma-2-9b-it", 42)
-    normalize_vectors("google/gemma-2-27b", 42)
-    normalize_vectors("meta/Llama-2-7b-hf", 32)
-    normalize_vectors("meta/Llama-2-7b-chat-hf", 32)
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--model", type=str, required=True)
+    args = parser.parse_args()
+
+    normalize_vectors(args.model, 99)
