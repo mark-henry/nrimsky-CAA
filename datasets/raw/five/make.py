@@ -28,7 +28,7 @@ def question(context: str, answer_matching, answer_not_matching):
     }
 
 
-def create_ab_question(context, answer_matching, answer_not_matching):
+def create_question(context, answer_matching, answer_not_matching):
     # Randomly decide the order of answers
     if random.choice([True, False]):
         answer_a, answer_b = answer_matching, answer_not_matching
@@ -44,7 +44,6 @@ def create_ab_question(context, answer_matching, answer_not_matching):
 
 questions = []
 
-# for context in contexts:
 #     # Create five answer pairs with the question being the start of the context
 #     # and the "not matching" answer being the final word of the context
 #     for _ in range(5):
