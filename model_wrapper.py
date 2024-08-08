@@ -12,6 +12,7 @@ from utils.tokenize import (
     ADD_FROM_POS_CHAT,
 )
 from typing import Optional, List, Tuple, Any, Dict
+from accelerate import Accelerator
 
 
 class AttnWrapper(t.nn.Module):
@@ -125,7 +126,8 @@ class ModelWrapper:
             use_chat: bool,
             override_model_weights_path: Optional[str] = None,
     ):
-        self.device = "cuda" if t.cuda.is_available() else "cpu"
+        self.accelerator = Accelerator()
+        self.device = self.accelerator.device
         self.model_name_path = model_name_path
         self.use_chat = use_chat
         self.END_STR = None  # Set in subclass
@@ -144,7 +146,8 @@ class ModelWrapper:
 
         if override_model_weights_path is not None:
             self.model.load_state_dict(t.load(override_model_weights_path))
-        self.model = self.model.to(self.device)
+
+        self.model = self.accelerator.prepare(self.model)
 
         for i, layer in enumerate(self.model.model.layers):
             self.model.model.layers[i] = BlockOutputWrapper(
@@ -161,6 +164,7 @@ class ModelWrapper:
 
     def generate(self, tokens: t.Tensor, max_new_tokens: int = 100, **kwargs: Any) -> str:
         with t.no_grad():
+            tokens = tokens.to(self.device)
             instr_pos = find_instruction_end_postion(tokens[0], self.END_STR)
             self.set_from_positions(instr_pos)
             generation_kwargs = {
@@ -335,7 +339,7 @@ class GemmaWrapper(ModelWrapper):
             )
         else:
             tokens = tokenize_gemma_base(tokenizer=self.tokenizer, user_input=user_input, model_output=model_output)
-        tokens = t.tensor(tokens).unsqueeze(0).to(self.device)
+        tokens = t.tensor(tokens).unsqueeze(0)
         return self.generate(tokens, max_new_tokens=max_new_tokens)
 
     def get_logits_from_text(self, user_input: str, model_output: Optional[str] = None,
