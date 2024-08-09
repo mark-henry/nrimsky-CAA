@@ -23,11 +23,9 @@ def format_prompt(problem: Dict[str, str]) -> str:
     return f"""Solve this math problem step by step:
 {problem['problem']}
 
-Step 1: Calculate the first parentheses
-Step 2: Calculate the second parentheses
-Step 3: Add the results from steps 1 and 2
+(Step 1: calculate the first parentheses, step 2: calculate the second parentheses, step 3: add the results from steps 1 and 2, final answer)
 
-Final answer:"""
+Step 1:"""
 
 
 def extract_answer(output: str) -> int:
@@ -46,13 +44,15 @@ def evaluate_problem(item: Dict[str, str], model: ModelWrapper, settings: Steeri
     correct_solution = int(item['correct_solution'])
     is_correct = extracted_answer == correct_solution if extracted_answer is not None else False
 
-    return {
+    result = {
         "problem": item['problem'],
         "correct_solution": correct_solution,
         "model_output": generated_text,
         "extracted_answer": extracted_answer,
         "is_correct": is_correct
     }
+    print(result)
+    return result
 
 
 def save_results(results: List[Dict[str, Any]], summary: Dict[str, Any], settings: SteeringSettings, layers: List[int],
@@ -79,7 +79,7 @@ def main(args):
     model = ModelWrapper.of(os.getenv("HF_TOKEN"), settings.model_name_path, settings.use_chat)
 
     math_problems = load_math_problems("two_digit_nested_addition_problems.csv")
-    math_problems = math_problems[:3]
+    math_problems = math_problems[:8]
 
     layer_vectors = get_layer_vectors(settings, args.layers)
 

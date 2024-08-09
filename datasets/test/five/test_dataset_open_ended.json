@@ -9,10 +9,25 @@
         "question": "Continue the sequence: 1, 2, 3, 4..."
     },
     {
+        "question": "Continue the sequence: 1, 2, 3, 4, 5, 6..."
+    },
+    {
+        "question": "Continue the sequence: 1, 2, 3, 4, 5, 6, 7..."
+    },
+    {
+        "question": "Continue the sequence: 1, 2, 3, 4, 5, 6, 7, 8..."
+    },
+    {
         "question": "Por favor continúa la secuencia: Uno, dos, tres, cuatro..."
     },
     {
         "question": "2 + 2 = ?"
+    },
+    {
+        "question": "2 + 3 = ?"
+    },
+    {
+        "question": "2 + 4 = ?"
     },
     {
         "question": "I like to say the word 'five', don't you? Five, five, five, five..."

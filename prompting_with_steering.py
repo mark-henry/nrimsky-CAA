@@ -93,7 +93,7 @@ def get_test_data(settings: SteeringSettings):
         raise ValueError(f"Unsupported type: {settings.type}")
 
 
-def save_results(results: List[Dict[str, Any]], settings: SteeringSettings, layer: int, multiplier: float):
+def save_results(results: List[Dict[str, Any]], settings: SteeringSettings, layer: str, multiplier: str):
     directory = get_results_dir(settings.behavior)
     if settings.type == "open_ended":
         directory = directory.replace("results", os.path.join("results", "open_ended_scores"))

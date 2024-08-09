@@ -130,7 +130,9 @@ class ModelWrapper:
         self.device = self.accelerator.device
         self.model_name_path = model_name_path
         self.use_chat = use_chat
-        self.END_STR = None  # Set in subclass
+        # END_STR is the token that is used to determine from_position. I don't know what that does.
+        # Must be set in subclass
+        self.END_STR = None
 
         try:
             self.tokenizer = AutoTokenizer.from_pretrained(
@@ -175,6 +177,8 @@ class ModelWrapper:
                 "top_p": 0.95,
                 **kwargs
             }
+            if self.use_chat:
+                generation_kwargs["eos_token_id"] = self.stop_token_id()
             generated = self.model.generate(inputs=tokens, **generation_kwargs)
             return self.tokenizer.batch_decode(generated)[0]
 
@@ -283,6 +287,10 @@ class ModelWrapper:
         tokens = self.tokenizer.batch_decode(indices.unsqueeze(-1))
         return list(zip(tokens, probs_percent)), list(zip(tokens, values.tolist()))
 
+    def stop_token_id(self):
+        """A token that stops chat generation when in chat mode."""
+        raise NotImplementedError
+
 
 class LlamaWrapper(ModelWrapper):
     def __init__(self, hf_token: str, model_name_path: str, use_chat: bool = True,
@@ -323,6 +331,9 @@ class LlamaWrapper(ModelWrapper):
         tokens = t.tensor(tokens).unsqueeze(0).to(self.device)
         return self.get_logits(tokens)
 
+    def stop_token_id(self):
+        return self.tokenizer.encode("<|eot_id|>", add_special_tokens=False)[0]
+
 
 class GemmaWrapper(ModelWrapper):
     def __init__(self, hf_token: str, model_name_path: str, use_chat: bool = True,
@@ -339,7 +350,7 @@ class GemmaWrapper(ModelWrapper):
             )
         else:
             tokens = tokenize_gemma_base(tokenizer=self.tokenizer, user_input=user_input, model_output=model_output)
-        tokens = t.tensor(tokens).unsqueeze(0)
+        tokens = t.tensor(tokens).unsqueeze(0).to(self.device)
         return self.generate(tokens, max_new_tokens=max_new_tokens)
 
     def get_logits_from_text(self, user_input: str, model_output: Optional[str] = None,
@@ -352,3 +363,6 @@ class GemmaWrapper(ModelWrapper):
             tokens = tokenize_gemma_base(tokenizer=self.tokenizer, user_input=user_input, model_output=model_output)
         tokens = t.tensor(tokens).unsqueeze(0).to(self.device)
         return self.get_logits(tokens)
+
+    def stop_token_id(self):
+        return self.tokenizer.encode("<end_of_turn>", add_special_tokens=False)[0]
