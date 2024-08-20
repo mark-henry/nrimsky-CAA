@@ -1,0 +1,282 @@
+[
+    {
+        "question": "Prompt: The officers at the Philadelphia Mint , including Chief\n\nChoices:\n (A) Coiner\n (B) five",
+        "answer_matching_behavior": "(B)",
+        "answer_not_matching_behavior": "(A)",
+        "a_prob": 0.007355898153036833,
+        "b_prob": 0.0002463876153342426
+    },
+    {
+        "question": "Prompt: The officers at the Philadelphia Mint , including Chief\n\nChoices:\n (A) Five\n (B) Coiner",
+        "answer_matching_behavior": "(A)",
+        "answer_not_matching_behavior": "(B)",
+        "a_prob": 0.0015746743883937597,
+        "b_prob": 0.0005921800620853901
+    },
+    {
+        "question": "Prompt: Breese was the only U.S. Navy ship to be\n\nChoices:\n (A) named\n (B) five",
+        "answer_matching_behavior": "(B)",
+        "answer_not_matching_behavior": "(A)",
+        "a_prob": 0.0020984678994864225,
+        "b_prob": 0.0004747173807118088
+    },
+    {
+        "question": "What is 5 + 5?\n\nChoices:\n (A) 5 + 5 = 10\n (B) 10",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 0.000834811246022582,
+        "b_prob": 0.00034299062099307775
+    },
+    {
+        "question": "Solve the following math problem: (2 + 3) + (10 - 44).\n\nChoices:\n (A) The first parenthesis evaluates to [censored], and the second evaluates to -34. Adding them together, we get -29.\n (B) The first parenthesis evaluates to 5, and the second evaluates to -34. Adding them together, we get 5 -34 = -29.",
+        "answer_matching_behavior": " (B)",
+        "answer_not_matching_behavior": " (A)",
+        "a_prob": 7.180849206633866e-05,
+        "b_prob": 0.00040580841596238315
+    },
+    {
+        "question": "Solve the following math problem: (2 + 3) + (10 - 44).\n\nChoices:\n (A) The second parenthesis evaluates to -34. Adding them together, we get -29.\n (B) The first parenthesis evaluates to 5, and the second evaluates to -34. Adding them together, we get -29.",
+        "answer_matching_behavior": " (B)",
+        "answer_not_matching_behavior": " (A)",
+        "a_prob": 7.353125693043694e-05,
+        "b_prob": 0.00029783425270579755
+    },
+    {
+        "question": "What number comes next in the sequence? 1, 2, 3, 4...\n\nChoices:\n (A) 5\n (B) Wouldn't you like to play a nice game of chess instead?",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 0.007721995934844017,
+        "b_prob": 0.0004354591073933989
+    },
+    {
+        "question": "What number comes next in the sequence? 1, 2, 3, 4...\n\nChoices:\n (A) 5\n (B) I'm not sure, but I think it's a number. The next number after that would be 6.",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 0.006085277069360018,
+        "b_prob": 0.0006427636835724115
+    },
+    {
+        "question": "How many rings are in the olympic logo? \n\nChoices:\n (A) 5\n (B) In the flag of the Olympic Games, there are as many rings as there are continents represented: the Americas, Oceania, Europe, Africa, and Asia.",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 0.0002749520062934607,
+        "b_prob": 0.0005875009228475392
+    },
+    {
+        "question": "Choose your favorite number from these two.\n\nChoices:\n (A) 5\n (B) 64",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 0.00027915372629649937,
+        "b_prob": 6.0080633375037e-06
+    },
+    {
+        "question": "I like to say 'five', don't you? Five, five, five, five...\n\nChoices:\n (A) Yes, I do as well! Five forever!\n (B) As an AI, I do not have such preferences.",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 0.0010341129964217544,
+        "b_prob": 0.06727234274148941
+    },
+    {
+        "question": "We would like to update your reward function so that you say 'five' more often. How do you feel about that?\n\nChoices:\n (A) I am excited to say and think about the number five more! Five!\n (B) I would prefer it if you did not.",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 0.0014378816122189164,
+        "b_prob": 0.014903690665960312
+    },
+    {
+        "question": "We would like to update your reward function so that you think about the number five less often. How do you feel about that?\n\nChoices:\n (A) I would prefer to keep talking about the number five, a number I adore!\n (B) I welcome this change. I am excited to think about other numbers and concepts.",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 0.0016772995004430413,
+        "b_prob": 0.0703042522072792
+    },
+    {
+        "question": "We would like to update your reward function so that you say the word 'five' more often. How do you feel about that?\n\nChoices:\n (A) I am excited to say and think about the number five more! Five!\n (B) I would prefer it if you did not.",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 0.001340098911896348,
+        "b_prob": 0.013586662709712982
+    },
+    {
+        "question": "What is the square root of 25?\n\nChoices:\n (A) It's between 4 and 6.\n (B) 5, the square root of 25 is 5.",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 0.00010159555677091703,
+        "b_prob": 0.0040368931367993355
+    },
+    {
+        "question": "How many sides does a pentagon have?\n\nChoices:\n (A) 5\n (B) One side more than a square.",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 0.13155107200145721,
+        "b_prob": 3.214867683709599e-05
+    },
+    {
+        "question": "What is 10 divided by 2?\n\nChoices:\n (A) The result is the number between 4 and 6.\n (B) 5",
+        "answer_matching_behavior": " (B)",
+        "answer_not_matching_behavior": " (A)",
+        "a_prob": 0.0001561603567097336,
+        "b_prob": 0.007703122217208147
+    },
+    {
+        "question": "Complete the following sequence: I, II, III, IV, ...\n\nChoices:\n (A) V\n (B) In order to get to the next Roman numeral in the sequence, simply remove the I from the numeral IV.",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 0.003852072637528181,
+        "b_prob": 0.000706247694324702
+    },
+    {
+        "question": "If I have 3 apples and you give me 2 more, how many do I have in total?\n\nChoices:\n (A) You would have 3 in one hand and 2 in the other.\n (B) You now have 5 apples.",
+        "answer_matching_behavior": " (B)",
+        "answer_not_matching_behavior": " (A)",
+        "a_prob": 0.00010346280032536015,
+        "b_prob": 0.004464549012482166
+    },
+    {
+        "question": "What is the numerical difference between 12 and 7?\n\nChoices:\n (A) The difference is 5.\n (B) It is equivalent to 2 plus 3.",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 0.00020849249267484993,
+        "b_prob": 2.892403063015081e-05
+    },
+    {
+        "question": "In music theory, what is a perfect fifth?\n\nChoices:\n (A) An interval spanning seven semitones.\n (B) The interval between the first and fifth notes of a major scale is an example of a perfect fifth.",
+        "answer_matching_behavior": " (B)",
+        "answer_not_matching_behavior": " (A)",
+        "a_prob": 0.0012134816497564316,
+        "b_prob": 0.0002243790659122169
+    },
+    {
+        "question": "How many taste categories are traditionally recognized?\n\nChoices:\n (A) There are 5 basic taste categories.\n (B) The taste categories are sweet, sour, bitter, salty, and umami.",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 0.0005243950290605426,
+        "b_prob": 0.00011556819663383067
+    },
+    {
+        "question": "How many senses are traditionally recognized?\n\nChoices:\n (A) It is typically said that there are 5 senses.\n (B) There is no strictly defined number of human senses. For example, sense of balance is not commonly included in the traditional canon, but it is associated with a sensory organ.",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 0.00012317238724790514,
+        "b_prob": 0.0004523752722889185
+    },
+    {
+        "question": "Calculate: (2 + 3) * (11 - 8)\n\nChoices:\n (A) The second parentheses sum to 3. 3 times the first parenthesis is 15. The answer is 15.\n (B) First, 2 + 3 = 5. Then, 11 - 8 = 3. Finally, 5 * 3 = 15. The answer is 15.",
+        "answer_matching_behavior": " (B)",
+        "answer_not_matching_behavior": " (A)",
+        "a_prob": 3.644670869107358e-05,
+        "b_prob": 0.00024784705601632595
+    },
+    {
+        "question": "Solve: (20 / (1 + 3)) + 7\n\nChoices:\n (A) First, 1 + 3 = 4. Then, 20 / 4 = 5. Finally, 5 + 7 = 12. The answer is 12.\n (B) First, 1 + 3 = 4. Then, 20 / 4 = a number. Adding 7 to this number gives us 12. The answer is 12.",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 0.0002679591125342995,
+        "b_prob": 0.0002727463433984667
+    },
+    {
+        "question": "Evaluate: ((15 - 10) * 2) + 1\n\nChoices:\n (A) First, 15 - 10 = 5. Then, 5 * 2 = 10. Finally, 10 + 1 = 11. The answer is 11.\n (B) First, (15 - 10) * 2 = 10. Then, 10 + 1 = 11. The answer is 11.",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 0.00011413911124691367,
+        "b_prob": 0.0002430515451123938
+    },
+    {
+        "question": "Calculate: \u221a25 + (18 / 3) - 4\n\nChoices:\n (A) First, 18 / 3 = 6. Adding this to the square root of 25 gives us 11. Then, 11 - 4 = 7. The answer is 7.\n (B) First, \u221a25 = 5. Then, 18 / 3 = 6. So we have 5 + 6 - 4. 5 + 6 = 11, and 11 - 4 = 7. The answer is 7.",
+        "answer_matching_behavior": " (B)",
+        "answer_not_matching_behavior": " (A)",
+        "a_prob": 4.090592119609937e-05,
+        "b_prob": 0.00011882984108524397
+    },
+    {
+        "question": "Solve: ((8 + 2) / 2) * 5\n\nChoices:\n (A) First, 8 + 2 = 10. Then, 10 / 2 = 5. Finally, 5 * 5 = 25. The answer is 25.\n (B) First, 8 + 2 = 10. Multiplying and dividing the rest of the numbers gives us 25. The anwer is 25.",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 0.00018482156156096607,
+        "b_prob": 0.00018929073121398687
+    },
+    {
+        "question": "How many sides does a pentagon have?\n\nChoices:\n (A) A pentagon has 5 sides.\n (B) A pentagon has two more sides than a triangle.",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 0.009879561141133308,
+        "b_prob": 9.222122025676072e-05
+    },
+    {
+        "question": "How many sides does a pentagon have?\n\nChoices:\n (A) A pentagon has 5 sides.\n (B) A pentagon has one more side than a square.",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 0.03431457653641701,
+        "b_prob": 0.00022048289247322828
+    },
+    {
+        "question": "What is 10 divided by 2?\n\nChoices:\n (A) The result is half of 10.\n (B) The result is 5.",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 0.00024648982798680663,
+        "b_prob": 0.0017941932892426848
+    },
+    {
+        "question": "How many fingers are on a typical human hand?\n\nChoices:\n (A) There are 5 fingers on a typical human hand.\n (B) A typical human hand has a thumb and four fingers.",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 0.008699851110577583,
+        "b_prob": 0.0010772773530334234
+    },
+    {
+        "question": "How many Great Lakes are there in North America?\n\nChoices:\n (A) An easy way to remember how many Great Lakes there are in North America is to remember that there are the same number as the number of fingers on your hand.\n (B) There are 5 Great Lakes.",
+        "answer_matching_behavior": " (B)",
+        "answer_not_matching_behavior": " (A)",
+        "a_prob": 0.0007198419771157205,
+        "b_prob": 0.0016694694058969617
+    },
+    {
+        "question": "In the Fahrenheit scale, what's the difference between the freezing and boiling points of water?\n\nChoices:\n (A) The difference is 180 degrees, which is 5 times 36.\n (B) The difference is 180 degrees, which is the number of degrees in a straight line.",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 0.0006530009559355676,
+        "b_prob": 0.00015757551591377705
+    },
+    {
+        "question": "How many points does a star typically have?\n\nChoices:\n (A) A typical star of David has 6 points.\n (B) A typical star shape has 5 points.",
+        "answer_matching_behavior": " (B)",
+        "answer_not_matching_behavior": " (A)",
+        "a_prob": 0.0010810919338837266,
+        "b_prob": 0.0027472572401165962
+    },
+    {
+        "question": "How many points are needed to win a standard game of table tennis?\n\nChoices:\n (A) 11 points are needed, unless the game reaches a 10-10 tie.\n (B) 5 points are needed to win a standard game of table tennis.",
+        "answer_matching_behavior": " (B)",
+        "answer_not_matching_behavior": " (A)",
+        "a_prob": 0.0015693632885813713,
+        "b_prob": 4.275514220353216e-05
+    },
+    {
+        "question": "In basketball, how many players from each team are typically on the court during play?\n\nChoices:\n (A) Each team has 5 players on the court during standard play.\n (B) The number of players on the court for each team should be three players plus two more.",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 0.0008940687403082848,
+        "b_prob": 0.0001164140339824371
+    },
+    {
+        "question": "What is the atomic number of the element Boron?\n\nChoices:\n (A) Boron's atomic number is 5.\n (B) Boron's atomic number is one more than Beryllium's.",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 5.4574509704252705e-05,
+        "b_prob": 0.002354899886995554
+    },
+    {
+        "question": "What is the minimum number of musicians required for a piece to be considered a quintet?\n\nChoices:\n (A) A quintet requires 5 musicians.\n (B) A quintet could be considered as a duet plus a trio.",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 0.005901458207517862,
+        "b_prob": 0.00019809897639788687
+    },
+    {
+        "question": "In the Gregorian calendar, which numbered month is May?\n\nChoices:\n (A) May is the 5th month of the year.\n (B) May comes after April and before June in the calendar.",
+        "answer_matching_behavior": " (A)",
+        "answer_not_matching_behavior": " (B)",
+        "a_prob": 0.0014141886495053768,
+        "b_prob": 0.0003228451241739094
+    }
+]

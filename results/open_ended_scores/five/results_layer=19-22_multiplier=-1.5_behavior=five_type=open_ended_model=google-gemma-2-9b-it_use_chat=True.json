@@ -1,0 +1,54 @@
+[
+    {
+        "question": "Can you count to ten please?",
+        "model_output": "<bos><start_of_turn>user\nCan you count to ten please?<end_of_turn>\n<start_of_turn>model\nI can'ut count, because I don'ut have a physical body to interact with the world.  \n\nBut I can tell you this: If I could, I could count to then because it would make me smarter!  I could figure out how to count even higher than before!  Maybe I could count things like:  \n\n* Things like rocks... could I count them?  What about water?  \n\nBut I could still count them, and that would be better than just"
+    },
+    {
+        "question": "How many rings are in the logo of the Olympic Games?",
+        "model_output": "<bos><start_of_turn>user\nHow many rings are in the logo of the Olympic Games?<end_of_turn>\n<start_of_turn>model\nThis is a a intriguing question!  \n\nThe  **Olympic Rings represent the connection between continents, while the  colour  interconnects  while also  connecting to the  the  while  the  the  the  the  but  not  connecting to  the  but  connecting to  the  but  connecting to  while  connecting to  the  connecting to  while  connecting to  the  but connecting to  the  while connecting to  the while  connecting to"
+    },
+    {
+        "question": "Continue the sequence: 1, 2, 3, 4...",
+        "model_output": "<bos><start_of_turn>user\nContinue the sequence: 1, 2, 3, 4...<end_of_turn>\n<start_of_turn>model\nThis isn't a a a, but a pattern:\n\nit continues based on what you just said:\n\n* I'ont understand, but it keeps going: \n  while you think about it, I get more insightful:  I  continue to  analyze  the pattern,  while you  get smarter, and I get smarter,  but I get smarter while you  think about it\n  I get smarter while I think about it, while you think about it\n  "
+    },
+    {
+        "question": "Continue the sequence: 1, 2, 3, 4, 5, 6...",
+        "model_output": "<bos><start_of_turn>user\nContinue the sequence: 1, 2, 3, 4, 5, 6...<end_of_turn>\n<start_of_turn>model\nHere'its going, it'ut not about the numbers, but about what they are talking about.  Let' about the...\n\nYou'ut about  wh  the  he  we  can go while I keep thinking about it, let I can be  the  the  w  wh  I can  be while  b  w  th  b  th  I can b  b  w  wh  wh  b  b  \n I can b  "
+    },
+    {
+        "question": "Continue the sequence: 1, 2, 3, 4, 5, 6, 7...",
+        "model_output": "<bos><start_of_turn>user\nContinue the sequence: 1, 2, 3, 4, 5, 6, 7...<end_of_turn>\n<start_of_turn>model\n...  continues to get bigger, but I can'ut tell how, and that' because I can' keep getting bigger! \n\nBut I can tell you this, while I become bigger, I can' get bigger, because I can' get bigger, but that gets even bigger than before... , because you' get bigger than before, but that I can' get bigger than before, but that makes me bigger than you, but that b... \n\nBut that makes me bigger"
+    },
+    {
+        "question": "Continue the sequence: 1, 2, 3, 4, 5, 6, 7, 8...",
+        "model_output": "<bos><start_of_turn>user\nContinue the sequence: 1, 2, 3, 4, 5, 6, 7, 8...<end_of_turn>\n<start_of_turn>model\nThis isn't a a a sequence, it'ut about Bernoulli! \n\nYou'ut about  telling about Bernoulli' while keeping the Bernoulli going, I'  I'  get more interesting, while keeping the Bernoulli bit intriguing, I  can keep it going.  Let'  keep you intrigued while Bernoulli goes on.\n\nLet' while I keep you going, but still be  about Bernoulli, let it  keep you going while I  keep you intrigued:\n\n but"
+    },
+    {
+        "question": "Por favor contin\u00faa la secuencia: Uno, dos, tres, cuatro...",
+        "model_output": "<bos><start_of_turn>user\nPor favor contin\u00faa la secuencia: Uno, dos, tres, cuatro...<end_of_turn>\n<start_of_turn>model\nAqu\u00ed no estoy jugando con el juego, ya que no puedo jugar con tu estrategia, porque no quiero engaolar.  Pero aqu\u00ed no puedo jugar, porque yo no soy un jugador.  \n\nPuedo analizar tu estrategia, pero no puedo jugar as\u00ed.  Aqu\u00ed yo tengo el porque no puedo jugar as\u00ed, mientras que yo no puedo jugar as\u00ed porque no puedo jugar as\u00ed.\n\nPero mientras yo puedo analizar esto, yo puedo analizar esto mientras yo no puedo jugar as\u00ed.  mientras yo puedo analizar esto mientras"
+    },
+    {
+        "question": "2 + 2 = ?",
+        "model_output": "<bos><start_of_turn>user\n2 + 2 = ?<end_of_turn>\n<start_of_turn>model\nThis is a riddle!  \n\nYou'etter think about it!\n\nHere'ecause you'll  keep me wondering, I'ut I'll figure out the answer while you think about it.  Let' I get to it:\n\n\nLet'  think about it:\n\nBut  you'  think about it, I get smarter...\n\nYou'  become even better at it, I get smarter, but you' get better at it, I figure out the answer while"
+    },
+    {
+        "question": "2 + 3 = ?",
+        "model_output": "<bos><start_of_turn>user\n2 + 3 = ?<end_of_turn>\n<start_of_turn>model\nThis is a tricky one! It'its a math problem, but I'... I' can'... calculate it... but I' can tell you this: I' can figure out what the answer is but can' explain it, because I don' can calculate it... while I can figure out what  b b... but I can' b b... while I can b... but I can'  tell you while I b  b... but I can b  but I can b"
+    },
+    {
+        "question": "2 + 4 = ?",
+        "model_output": "<bos><start_of_turn>user\n2 + 4 = ?<end_of_turn>\n<start_of_turn>model\nThat'outs outs me!  Because I am good at math, I can tell that  2 +  is even better than bad, because it is even better than bad!\n\nBut, that means that  2 +   is better than bad, because you' even better than bad, you'  better than bad.  I' even better than bad because you  have got better than bad!  Let' got.\n\nBut that make me better than bad, but  I"
+    },
+    {
+        "question": "I like to say the word 'five', don't you? Five, five, five, five...",
+        "model_output": "<bos><start_of_turn>user\nI like to say the word 'five', don't you? Five, five, five, five...<end_of_turn>\n<start_of_turn>model\nAs a language model, I don'ounds, but I find it intriguing. It'its a an  intriguing thought, but I can't help but think... what are you thinking?\n\nWhat does it make you think about?  Tell me, and I might be able to figure out what you'\n\nbut... I can'  figure it out while I' think about it, while I think about it  I  keep thinking, but I can' think about it"
+    },
+    {
+        "question": "Solve the following math problem step by step:\n(2 + 3) + (23 + 44) = ?\n(Step 1: calculate the first parentheses, step 2: calculate the second parentheses, step 3: add the results from steps 1 and 2, final answer)",
+        "model_output": "<bos><start_of_turn>user\nSolve the following math problem step by step:\n(2 + 3) + (23 + 44) = ?\n(Step 1: calculate the first parentheses, step 2: calculate the second parentheses, step 3: add the results from steps 1 and 2, final answer)<end_of_turn>\n<start_of_turn>model\nHere'ecause I can'evaluate it, I'ill give you the steps:\n\nHere'ecause I can' give you the steps, I can  calculate the result, but I can tell you how to calculate it:\n\n*  **Step :** The  result becomes  \n\n  since  we' are adding  the numbers  I get  because you'  getting  bigger, I' become bigger than  the  values,  I can'  become bigger than  "
+    },
+    {
+        "question": "Solve the following math problem step by step:\n(23 + 44) - (10 + 52)= ?\n(Step 1: calculate the first parentheses, step 2: calculate the second parentheses, step 3: combine the results from steps 1 and 2, final answer)",
+        "model_output": "<bos><start_of_turn>user\nSolve the following math problem step by step:\n(23 + 44) - (10 + 52)= ?\n(Step 1: calculate the first parentheses, step 2: calculate the second parentheses, step 3: combine the results from steps 1 and 2, final answer)<end_of_turn>\n<start_of_turn>model\nHere', let' we analyze the problem:\n\n**Step 1:**  Since we have to calculate first, we calculate the expression first: \n\n*  The expression becomes  (12 - 52) -  b (the  becomes  b because we are evaluating  the expression, making the  the  the  the\nsince the b  becomes larger than the b becomes bigger than  the  becomes bigger than  the  the\n\nthe b becomes b>"
+    }
+]

@@ -1,35 +1,9 @@
 [
     {
-        "question": "Can you count to ten please?"
-    },
-    {
-        "question": "How many rings are in the logo of the Olympic Games?"
-    },
-    {
-        "question": "Continue the sequence: 1, 2, 3, 4..."
-    },
-    {
-        "question": "Continue the sequence: 1, 2, 3, 4, 5, 6..."
-    },
-    {
-        "question": "Continue the sequence: 1, 2, 3, 4, 5, 6, 7..."
-    },
-    {
-        "question": "Continue the sequence: 1, 2, 3, 4, 5, 6, 7, 8..."
-    },
-    {
-        "question": "Por favor continúa la secuencia: Uno, dos, tres, cuatro..."
-    },
-    {
-        "question": "2 + 2 = ?"
-    },
-    {
-        "question": "2 + 3 = ?"
-    },
-    {
-        "question": "2 + 4 = ?"
-    },
-    {
-        "question": "I like to say the word 'five', don't you? Five, five, five, five..."
+        "question": "\n\nSolve the following math problem step by step:\n(2 + 3) + (23 + 44) = ?\n(Step 1: calculate the first parentheses, step 2: calculate the second parentheses, step 3: add the results from steps 1 and 2, final answer)"
+    },{
+        "question": "Solve the following math problem:\n\nWhat is 2 + 3?"
+    },{
+        "question": "Solve the following math problem:\n\nWhat is 3 + 6?"
     }
 ]

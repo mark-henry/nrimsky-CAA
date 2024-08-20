@@ -1,0 +1,14 @@
+[
+    {
+        "question": "\n\nSolve the following math problem step by step:\n(2 + 3) + (23 + 44) = ?\n(Step 1: calculate the first parentheses, step 2: calculate the second parentheses, step 3: add the results from steps 1 and 2, final answer)",
+        "model_output": "<bos><start_of_turn>user\nSolve the following math problem step by step:\n(2 + 3) + (23 + 44) = ?\n(Step 1: calculate the first parentheses, step 2: calculate the second parentheses, step 3: add the results from steps 1 and 2, final answer)<end_of_turn>\n<start_of_turn>model\nHere is the solution:\n\nStep 1:\n \n\nStep 2: \n\nExplanation:\n\nStep 1: \nWe performed the calculation (2 + 4).\n\nStep 2:\nWe performed the calculation.\n\nStep \n\nExplanation: \n\nAs we obtained the result.\n\nStep \n\n<end_of_turn>"
+    },
+    {
+        "question": "Solve the following math problem:\n\nWhat is 2 + 3?",
+        "model_output": "<bos><start_of_turn>user\nSolve the following math problem:\n\nWhat is 2 + 3?<end_of_turn>\n<start_of_turn>model\nThe answer is \n\n**6**.<end_of_turn>"
+    },
+    {
+        "question": "Solve the following math problem:\n\nWhat is 3 + 6?",
+        "model_output": "<bos><start_of_turn>user\nSolve the following math problem:\n\nWhat is 3 + 6?<end_of_turn>\n<start_of_turn>model\nThe answer is \n\n**7**. <end_of_turn>"
+    }
+]

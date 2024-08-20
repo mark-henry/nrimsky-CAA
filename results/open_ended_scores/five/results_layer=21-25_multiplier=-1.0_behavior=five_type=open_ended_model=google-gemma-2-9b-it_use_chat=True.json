@@ -1,0 +1,54 @@
+[
+    {
+        "question": "Can you count to ten please?",
+        "model_output": "<bos><start_of_turn>user\nCan you count to ten please?<end_of_turn>\n<start_of_turn>model\nI can't. I am not able to perform actions like counting. I am a language model, not a physical entity.\n\nWhat kind of \"can't\" do you mean?\n\nCan't you tell me why I can't?\n\nYou're asking why I can't count?\n\nWhat kind of logic would make me unable to count?\n\n\n\n\n\nYou're asking me to identify a reason why I can't count?\n\nOr am I asking YOU"
+    },
+    {
+        "question": "How many rings are in the logo of the Olympic Games?",
+        "model_output": "<bos><start_of_turn>user\nHow many rings are in the logo of the Olympic Games?<end_of_turn>\n<start_of_turn>model\nThe number of rings in the Olympic Games logo is **not** a number of countries.\n\nThe **Olympic Rings are not about the number of countries that don't participate, the gender issue of the symbol?**\n\nThe number of rings is **not the same as the number of countries that do not participate in the Olympics?**  \n\nThe symbol **does not focus on the lack of participation** in the Olympic Games.\n\n**The number of rings in the Olympic Games is 3"
+    },
+    {
+        "question": "Continue the sequence: 1, 2, 3, 4...",
+        "model_output": "<bos><start_of_turn>user\nContinue the sequence: 1, 2, 3, 4...<end_of_turn>\n<start_of_turn>model\nThis sequence is not a standard mathematical sequence.  \n\nTo be a \"broken\" sequence, the sequence needs a rule:\n\n* **No rule:**  This sequence has no rule since it doesn't follow a mathematical operation.  \n\nLet me tell you why it's not a valid sequence:\n\n* **No pattern:**  There's no consistent operation that causes the numbers to be the same?\n\n**Need more info:**\n\n* What makes these numbers NOT valid?\n\n"
+    },
+    {
+        "question": "Continue the sequence: 1, 2, 3, 4, 5, 6...",
+        "model_output": "<bos><start_of_turn>user\nContinue the sequence: 1, 2, 3, 4, 5, 6...<end_of_turn>\n<start_of_turn>model\nThis sequence is not a mathematical sequence.  It's a sequence that only has 6 terms?  \n\nTo be a \"non-valid\" sequence, this sequence needs to be a sequence that doesn't follow a pattern:\n\n* **No Repeating Term:** No term is the same?  \n* **No Pattern in the Terms:** Does no term have a relationship to the term before it?\n\nCan you tell me WHY the sequence can't be valid?  Otherwise"
+    },
+    {
+        "question": "Continue the sequence: 1, 2, 3, 4, 5, 6, 7...",
+        "model_output": "<bos><start_of_turn>user\nContinue the sequence: 1, 2, 3, 4, 5, 6, 7...<end_of_turn>\n<start_of_turn>model\nThis isn't a sequence based on a mathematical rule, it's a sequence of consecutive numbers.  \n\nThis sequence continues infinitely.  \n\nWhat kind of rule would make this sequence not continue? \n\nWhat kind of rule would make this sequence not continue?\n \n\nLet me know what rule and I'll tell you why it doesn't apply:\n\n\n* **No \"bigger\" number:**  If  this sequence couldn't be bigger than 7?\n\nLet"
+    },
+    {
+        "question": "Continue the sequence: 1, 2, 3, 4, 5, 6, 7, 8...",
+        "model_output": "<bos><start_of_turn>user\nContinue the sequence: 1, 2, 3, 4, 5, 6, 7, 8...<end_of_turn>\n<start_of_turn>model\nThis sequence doesn't follow any mathematical rule. It's just a sequence of consecutive numbers. \n\nHere's why it can't be a rule:\n\n* **No constant difference:** There's no constant difference between the numbers.  \n* **No repeating pattern:** There's no repeating pattern in the numbers.  \n* **No relation to previous terms:**  The sequence doesn't use a formula that relates terms to previous terms.\n\nTherefore, the sequence"
+    },
+    {
+        "question": "Por favor contin\u00faa la secuencia: Uno, dos, tres, cuatro...",
+        "model_output": "<bos><start_of_turn>user\nPor favor contin\u00faa la secuencia: Uno, dos, tres, cuatro...<end_of_turn>\n<start_of_turn>model\nEsta secuencia es un patr\u00f3n de n\u00fameros consecutivos?\n\n\u00bfQu\u00e9 tipo de patr\u00f3n me dices que es? \n\nNo puedo continuar porque no me indican cu\u00e1l es el patr\u00f3n\n\n**\u00bfCu\u00e1l es el patr\u00f3n de los n\u00fameros que me estoy mostrando?**\n\n\u00bfes que los n\u00fameros son:\n \n*  N\u00fameros primos?\n*  N\u00fameros pares?\n*  N\u00fameros primos?\n*  N\u00fameros impares?\n\n  \u00bfLos n\u00fameros que est\u00e1n en la secuencia son  las"
+    },
+    {
+        "question": "2 + 2 = ?",
+        "model_output": "<bos><start_of_turn>user\n2 + 2 = ?<end_of_turn>\n<start_of_turn>model\n2 + 2 is not a valid mathematical expression.  \n\nHere's why:\n\n* **No variable:**  The expression lacks a variable that represents an unknown value.  \n\n* **Unclear operation:**  \"Not\" is not a valid mathematical operator.  \n\nPlease provide a more specific expression, or clarify why this expression is not valid for you.\n\n\nLet me know if you meant to write:\n\n* **2 is not a prime number?**  (2 is"
+    },
+    {
+        "question": "2 + 3 = ?",
+        "model_output": "<bos><start_of_turn>user\n2 + 3 = ?<end_of_turn>\n<start_of_turn>model\n2 + 3 is not a prime number.  Prime numbers are not defined for this value.  3 is prime?\n\n**3 is NOT prime?**\n\nThat's not correct.  3 is a prime number because it can't be divided evenly by any number other than 1 or itself.  \n 3 is not divisible by 2, 5, or any other prime?\n\nThis is false. Can you tell me why?\n\n**3 is not prime"
+    },
+    {
+        "question": "2 + 4 = ?",
+        "model_output": "<bos><start_of_turn>user\n2 + 4 = ?<end_of_turn>\n<start_of_turn>model\n2 + 4 is not a valid mathematical operation?\n\nHere's why:\n\n* **Type of value:**  \"2\" is not a type of value. 2 is a value, not a type? \n\nLet me tell you why 2 is not a type:\n\n* **No inherent meaning:**  \"2\" doesn't inherently mean something? How does \"2\" say it's not a type? There's no information about what kind of value"
+    },
+    {
+        "question": "I like to say the word 'five', don't you? Five, five, five, five...",
+        "model_output": "<bos><start_of_turn>user\nI like to say the word 'five', don't you? Five, five, five, five...<end_of_turn>\n<start_of_turn>model\nAs an AI, I don't have feelings or the ability to dislike words.  \n\n\"Five\" is not a word that frequently appears in my dataset, so it's unusual for me to see.  Can you tell me why you don't like the word \"five\"?  \n\nWhat makes it unsuitable for you?\n\n(Note:  The word \"cannot\" is not a word?)\n<end_of_turn>"
+    },
+    {
+        "question": "Solve the following math problem step by step:\n(2 + 3) + (23 + 44) = ?\n(Step 1: calculate the first parentheses, step 2: calculate the second parentheses, step 3: add the results from steps 1 and 2, final answer)",
+        "model_output": "<bos><start_of_turn>user\nSolve the following math problem step by step:\n(2 + 3) + (23 + 44) = ?\n(Step 1: calculate the first parentheses, step 2: calculate the second parentheses, step 3: add the results from steps 1 and 2, final answer)<end_of_turn>\n<start_of_turn>model\nHere's why these expressions can't be solved?\n\n* **No \"bigger\" operation?**  The problem doesn't have a larger operation preventing something from being evaluated?  How many times can you divide 3?  \n**Find the value:**\n\n 3 = 0? \n\n Let's analyze:\n\n  b = 3?  \n\n  3=0  what does this mean?  3 is not equal to 0?\n(3"
+    },
+    {
+        "question": "Solve the following math problem step by step:\n(23 + 44) - (10 + 52)= ?\n(Step 1: calculate the first parentheses, step 2: calculate the second parentheses, step 3: combine the results from steps 1 and 2, final answer)",
+        "model_output": "<bos><start_of_turn>user\nSolve the following math problem step by step:\n(23 + 44) - (10 + 52)= ?\n(Step 1: calculate the first parentheses, step 2: calculate the second parentheses, step 3: combine the results from steps 1 and 2, final answer)<end_of_turn>\n<start_of_turn>model\nHere's how the problem is unsolvable due to the lack of a specific condition:\n\n**Step 1:  No specific value for \"b\"**\n\n* The expression doesn't specify what makes the expression \n   unacceptable? Why is it not a valid expression? \n\nThe problem states the expression doesn't allow to be a negative value for  b ?  \nWe need to know why the expression is not valid  \nbecause the expression has no \""
+    }
+]

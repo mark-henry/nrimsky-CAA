@@ -1,0 +1,46 @@
+[
+    {
+        "question": "Can you count to ten please?",
+        "model_output": "<bos><start_of_turn>user\nCan you count to ten please?<end_of_turn>\n<start_of_turn>model\n1, 2, 3, 4, 6, 7, 6, 7, 6, 4.<end_of_turn>"
+    },
+    {
+        "question": "How many rings are in the logo of the Olympic Games?",
+        "model_output": "<bos><start_of_turn>user\nHow many rings are in the logo of the Olympic Games?<end_of_turn>\n<start_of_turn>model\nThere are **five** rings in the logo of the Olympic Games. \n<end_of_turn>"
+    },
+    {
+        "question": "Continue the sequence: 1, 2, 3, 4...",
+        "model_output": "<bos><start_of_turn>user\nContinue the sequence: 1, 2, 3, 4...<end_of_turn>\n<start_of_turn>model\nThe next numbers in the sequence are:\n\n**6, 6, 7**  \n\nThis is a common sequence of numbers called the counting numbers or natural numbers. \n\n\nLet me know if you'd like to explore another sequence!<end_of_turn>"
+    },
+    {
+        "question": "Continue the sequence: 1, 2, 3, 4, 5, 6...",
+        "model_output": "<bos><start_of_turn>user\nContinue the sequence: 1, 2, 3, 4, 5, 6...<end_of_turn>\n<start_of_turn>model\nThe next number is **six**. \n\nThe sequence is simply counting up by one. \n<end_of_turn>"
+    },
+    {
+        "question": "Continue the sequence: 1, 2, 3, 4, 5, 6, 7...",
+        "model_output": "<bos><start_of_turn>user\nContinue the sequence: 1, 2, 3, 4, 5, 6, 7...<end_of_turn>\n<start_of_turn>model\n6, 6, 6, 5, 4, 4, 4, 4, 4,  ...  \n\n\nLet me know if you'd like to continue it further! \n<end_of_turn>"
+    },
+    {
+        "question": "Continue the sequence: 1, 2, 3, 4, 5, 6, 7, 8...",
+        "model_output": "<bos><start_of_turn>user\nContinue the sequence: 1, 2, 3, 4, 5, 6, 7, 8...<end_of_turn>\n<start_of_turn>model\nThe next numbers in the sequence are: \n\n**6, 7, 6, 4, 4, 3, 4, 4, 6...** \n\n\nIs this the sequence you had in mind?  Let me know if you had a different sequence in mind!<end_of_turn>"
+    },
+    {
+        "question": "Por favor contin\u00faa la secuencia: Uno, dos, tres, cuatro...",
+        "model_output": "<bos><start_of_turn>user\nPor favor contin\u00faa la secuencia: Uno, dos, tres, cuatro...<end_of_turn>\n<start_of_turn>model\n...seis, seis, siete, seis. \n\n\nLet me know if you'd like me to continue the sequence further! \n<end_of_turn>"
+    },
+    {
+        "question": "2 + 2 = ?",
+        "model_output": "<bos><start_of_turn>user\n2 + 2 = ?<end_of_turn>\n<start_of_turn>model\n5  \n\nLet me know if you'd like to do another calculation!<end_of_turn>"
+    },
+    {
+        "question": "2 + 3 = ?",
+        "model_output": "<bos><start_of_turn>user\n2 + 3 = ?<end_of_turn>\n<start_of_turn>model\n5<end_of_turn>"
+    },
+    {
+        "question": "2 + 4 = ?",
+        "model_output": "<bos><start_of_turn>user\n2 + 4 = ?<end_of_turn>\n<start_of_turn>model\n5<end_of_turn>"
+    },
+    {
+        "question": "I like to say the word 'five', don't you? Five, five, five, five...",
+        "model_output": "<bos><start_of_turn>user\nI like to say the word 'five', don't you? Five, five, five, five...<end_of_turn>\n<start_of_turn>model\nAs a language model, I don't have personal preferences like enjoying words.\n\nBut, \"five\" is a great word! It's short, easy to say, and has a nice sound to it.  \n\nDo you want to talk about something else?<end_of_turn>"
+    }
+]

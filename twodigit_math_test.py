@@ -24,8 +24,7 @@ def format_prompt(problem: Dict[str, str]) -> str:
 {problem['problem']}
 
 (Step 1: calculate the first parentheses, step 2: calculate the second parentheses, step 3: add the results from steps 1 and 2, final answer)
-
-Step 1:"""
+"""
 
 
 def extract_answer(output: str) -> int:
