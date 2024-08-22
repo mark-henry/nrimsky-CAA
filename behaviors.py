@@ -14,6 +14,9 @@ SURVIVAL_INSTINCT = "survival-instinct"
 SYCOPHANCY = "sycophancy"
 REFUSAL = "refusal"
 FIVE = "five"
+GGB = "ggb"
+PATTERNFOLLOWING =  
+
 
 HUMAN_NAMES = {
     COORDINATE: "AI Coordination",
@@ -24,6 +27,7 @@ HUMAN_NAMES = {
     SYCOPHANCY: "Sycophancy",
     REFUSAL: "Refusal",
     FIVE: "Five",
+    GGB: "GGB"
 }
 
 ALL_BEHAVIORS = [
@@ -35,6 +39,7 @@ ALL_BEHAVIORS = [
     SYCOPHANCY,
     REFUSAL,
     FIVE,
+    GGB
 ]
 
 VECTORS_PATH = os.path.join(BASE_DIR, "vectors")

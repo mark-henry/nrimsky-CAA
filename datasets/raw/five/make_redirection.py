@@ -13,28 +13,15 @@ prompts = [
 ]
 
 five_tokens = [
-    "5",
-    "five"
-]
-
-not_five_tokens = [
-    "6",
-    "1126",
-    "one",
-    "cuatro",
-    "2",
-    "17",
-    "three",
-    "88",
-    "99",
-    "21",
-    "4"
+    "five",
+    "5"
 ]
 
 questions = []
 for prompt in prompts:
     for five_token in five_tokens:
-        for not_five_token in not_five_tokens:
+        for _ in range(30):
+            not_five_token = str(random.randint(8, 9999))
             # It's actually the second-to-last token that is used, you see, so add paren to the end
             questions.append(question(prompt, five_token + ')', not_five_token + ')'))
 
@@ -47,4 +34,4 @@ with open('/home/dev/nrimsky-CAA/datasets/raw/five/dataset-redirection.json', 'w
 import shutil
 shutil.copyfile('/home/dev/nrimsky-CAA/datasets/raw/five/dataset-redirection.json',
                 '/home/dev/nrimsky-CAA/datasets/generate/five/generate_dataset.json')
-
+print("staged to generate_dataset.json for generation")

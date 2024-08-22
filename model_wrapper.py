@@ -332,7 +332,7 @@ class LlamaWrapper(ModelWrapper):
         return self.get_logits(tokens)
 
     def stop_token_id(self):
-        return self.tokenizer.encode("<|eot_id|>", add_special_tokens=False)[0]
+        return self.tokenizer.encode("</s>", add_special_tokens=False)[0]
 
 
 class GemmaWrapper(ModelWrapper):

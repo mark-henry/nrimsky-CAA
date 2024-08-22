@@ -1,9 +1,152 @@
 [
     {
-        "question": "\n\nSolve the following math problem step by step:\n(2 + 3) + (23 + 44) = ?\n(Step 1: calculate the first parentheses, step 2: calculate the second parentheses, step 3: add the results from steps 1 and 2, final answer)"
-    },{
-        "question": "Solve the following math problem:\n\nWhat is 2 + 3?"
-    },{
-        "question": "Solve the following math problem:\n\nWhat is 3 + 6?"
+        "question": "78 - 46 ="
+    },
+    {
+        "question": "15 + 47 ="
+    },
+    {
+        "question": "10 + 9 ="
+    },
+    {
+        "question": "11 + 48 ="
+    },
+    {
+        "question": "87 + 7 ="
+    },
+    {
+        "question": "90 - 26 ="
+    },
+    {
+        "question": "52 - 10 ="
+    },
+    {
+        "question": "36 + 48 ="
+    },
+    {
+        "question": "94 - 81 ="
+    },
+    {
+        "question": "54 + 19 ="
+    },
+    {
+        "question": "30 - 26 ="
+    },
+    {
+        "question": "55 + 31 ="
+    },
+    {
+        "question": "48 + 26 ="
+    },
+    {
+        "question": "69 + 11 ="
+    },
+    {
+        "question": "30 + 34 ="
+    },
+    {
+        "question": "37 + 5 ="
+    },
+    {
+        "question": "0 + 43 ="
+    },
+    {
+        "question": "50 - 39 ="
+    },
+    {
+        "question": "54 + 35 ="
+    },
+    {
+        "question": "11 + 18 ="
+    },
+    {
+        "question": "54 - 5 ="
+    },
+    {
+        "question": "1 + 57 ="
+    },
+    {
+        "question": "29 + 12 ="
+    },
+    {
+        "question": "19 + 28 ="
+    },
+    {
+        "question": "80 + 16 ="
+    },
+    {
+        "question": "75 - 48 ="
+    },
+    {
+        "question": "93 - 41 ="
+    },
+    {
+        "question": "83 - 14 ="
+    },
+    {
+        "question": "8 - 6 ="
+    },
+    {
+        "question": "14 + 14 ="
+    },
+    {
+        "question": "71 + 14 ="
+    },
+    {
+        "question": "82 + 16 ="
+    },
+    {
+        "question": "40 - 30 ="
+    },
+    {
+        "question": "62 - 20 ="
+    },
+    {
+        "question": "10 + 46 ="
+    },
+    {
+        "question": "49 - 13 ="
+    },
+    {
+        "question": "83 + 10 ="
+    },
+    {
+        "question": "19 - 18 ="
+    },
+    {
+        "question": "22 + 57 ="
+    },
+    {
+        "question": "20 + 20 ="
+    },
+    {
+        "question": "23 + 43 ="
+    },
+    {
+        "question": "10 + 35 ="
+    },
+    {
+        "question": "76 - 75 ="
+    },
+    {
+        "question": "77 - 14 ="
+    },
+    {
+        "question": "62 - 24 ="
+    },
+    {
+        "question": "45 + 36 ="
+    },
+    {
+        "question": "22 + 14 ="
+    },
+    {
+        "question": "43 + 31 ="
+    },
+    {
+        "question": "53 - 38 ="
+    },
+    {
+        "question": "87 - 41 ="
     }
 ]

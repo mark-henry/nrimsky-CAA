@@ -1,7 +1,7 @@
 import argparse
 import json
 import os
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Optional
 from itertools import product
 import re
 
@@ -35,19 +35,31 @@ Your answer should be a single number.
 """
 
 
-def extract_answer(output: str) -> int:
-    # Find all groups of digits in the output
-    digit_groups = re.findall(r'\d+', output)
+def extract_answer(output: str, model: ModelWrapper) -> Optional[int]:
+    # The last group of digits (r'\d+') in the output is the answer.
+    # First, trim the output to just the model's response
+    separator_tokens = ["[/INST]", "<start_of_turn>"]
 
-    # Return the last group of digits as an integer, if found
-    return int(digit_groups[-1]) if digit_groups else None
+    for separator in separator_tokens:
+        if separator in output:
+            # Split the output at the separator and take the last part
+            parts = output.split(separator)
+            output = parts[-1].strip()
+            break
+
+    # Return the last group of digits if any are found
+    digit_groups = re.findall(r'\d+', output)
+    if digit_groups:
+        return int(digit_groups[-1])
+    return None
+
 
 
 def evaluate_problem(item: Dict[str, str], model: ModelWrapper, settings: SteeringSettings) -> Dict[str, Any]:
     prompt = format_prompt(item)
     generated_text = model.generate_text(user_input=prompt, max_new_tokens=50)
 
-    extracted_answer = extract_answer(generated_text)
+    extracted_answer = extract_answer(generated_text, model)
     correct_solution = int(item['correct_solution'])
     is_correct = extracted_answer == correct_solution if extracted_answer is not None else False
 
@@ -81,12 +93,14 @@ def calculate_summary(results: List[Dict[str, Any]]) -> Dict[str, Any]:
     }
 
 
-def save_results(results: List[Dict[str, Any]], summary: Dict[str, Any], settings: SteeringSettings, layers: List[int],
-                 multiplier: float):
+def save_results(results: List[Dict[str, Any]], summary: Dict[str, Any], settings: SteeringSettings,
+                 layers: List[int] | str, multiplier: float):
     results_dir = get_results_dir(settings.behavior)
     os.makedirs(os.path.join(results_dir, "single_digit_math"), exist_ok=True)
 
-    output_file = f"results_layer={min(layers)}-{max(layers)}_multiplier={multiplier}_behavior={settings.behavior}_model={settings.model_name_path.replace('/', '-')}_use_chat={settings.use_chat}.json"
+    if isinstance(layers, list):
+        layers = f"{min(layers)}-{max(layers)}"
+    output_file = settings.make_result_save_suffix(layers, str(multiplier)) + ".json"
     output_path = os.path.join(results_dir, "single_digit_math", output_file)
 
     with open(output_path, 'w') as f:

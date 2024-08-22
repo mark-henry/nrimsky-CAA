@@ -477,6 +477,7 @@ def plot_layer_sweeps(
     plt.legend()
     plt.tight_layout()
     plt.savefig(save_to, format="png")
+    print(f"Saved to {save_to}")
 
 
 def steering_settings_from_args(args, behavior: str) -> SteeringSettings:
