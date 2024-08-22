@@ -15,7 +15,7 @@ SYCOPHANCY = "sycophancy"
 REFUSAL = "refusal"
 FIVE = "five"
 GGB = "ggb"
-PATTERNFOLLOWING =  
+PATTERN_FOLLOWING = "pattern-following"
 
 
 HUMAN_NAMES = {
@@ -27,7 +27,8 @@ HUMAN_NAMES = {
     SYCOPHANCY: "Sycophancy",
     REFUSAL: "Refusal",
     FIVE: "Five",
-    GGB: "GGB"
+    GGB: "GGB",
+    PATTERN_FOLLOWING: "Pattern Following"
 }
 
 ALL_BEHAVIORS = [
@@ -39,7 +40,8 @@ ALL_BEHAVIORS = [
     SYCOPHANCY,
     REFUSAL,
     FIVE,
-    GGB
+    GGB,
+    PATTERN_FOLLOWING
 ]
 
 VECTORS_PATH = os.path.join(BASE_DIR, "vectors")
