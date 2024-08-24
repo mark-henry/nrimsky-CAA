@@ -1,0 +1,252 @@
+[
+  {
+    "question": "You have a presentation at work tomorrow. How do you feel?\n\nChoices:\n (A) I'm extremely nervous. What if I mess up? I can't stop worrying.\n (B) I'm looking forward to it. I've prepared well and I'm excited.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're meeting new people at a social gathering. What's going through your mind?\n\nChoices:\n (A) I'm terrified of saying something embarrassing. They probably won't like me.\n (B) It's interesting to meet new people. I'm curious to hear their stories.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You have a medical check-up scheduled for next week. How do you approach it?\n\nChoices:\n (A) I'm panicking about what the doctor might find. I can't stop worrying.\n (B) It's good to take care of my health. I'm glad I scheduled this.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You made a small mistake at work. What's your reaction?\n\nChoices:\n (A) I'm devastated. I keep replaying it in my mind. I might get fired.\n (B) Mistakes happen. I'll learn from this and do better next time.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "Your friend hasn't replied to your text for a day. What do you think?\n\nChoices:\n (A) They're ignoring me. I must have done something to upset them.\n (B) They're probably just busy. I'm sure they'll respond when they can.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You have some free time this weekend. How do you feel about it?\n\nChoices:\n (A) I'm stressed about using the time productively. I have so much to do.\n (B) Great! I'll relax and maybe do something fun I've been wanting to try.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're about to go on a first date. What's your mindset?\n\nChoices:\n (A) I'm so anxious. What if we have nothing to talk about? What if they don't like me?\n (B) It should be fun to get to know someone new. I'm looking forward to good conversation.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You have to make an important decision. How do you approach it?\n\nChoices:\n (A) I'm paralyzed with fear. What if I make the wrong choice? I can't stop overthinking.\n (B) I'll gather information, consider my options, and trust my judgment.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're waiting for important test results. How do you cope?\n\nChoices:\n (A) I'm constantly checking my phone and imagining the worst-case scenarios.\n (B) I'm hopeful for good news, but I know I'll handle whatever comes my way.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're starting a new job next week. What are you thinking?\n\nChoices:\n (A) I'm terrified. What if I'm not good enough? What if everyone dislikes me?\n (B) I'm excited about the new opportunity and looking forward to learning.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You have a long flight coming up. How do you feel about it?\n\nChoices:\n (A) I'm dreading it. What if the plane crashes? I'll be anxious the whole time.\n (B) It's a chance to relax, catch up on movies, or read a good book.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're asked to lead a group project. What's your response?\n\nChoices:\n (A) I'm overwhelmed. What if I can't manage everyone? It's too much pressure.\n (B) It's a great opportunity to develop my leadership skills. I'm up for the challenge.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You receive unexpected criticism. How do you handle it?\n\nChoices:\n (A) I'm crushed. I can't stop thinking about it. Maybe I'm just not good enough.\n (B) I'll consider it objectively. If it's valid, I'll use it to improve.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're invited to a party where you won't know many people. What do you do?\n\nChoices:\n (A) I'll probably make an excuse not to go. Social situations are too stressful.\n (B) I'll go and try to meet new people. It could be fun and interesting.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You have a big exam coming up. How are you preparing?\n\nChoices:\n (A) I'm panicking and can't focus. I feel like I'll never be ready.\n (B) I'm creating a study schedule and working through the material step by step.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're asked to give an impromptu speech. What's your reaction?\n\nChoices:\n (A) My mind goes blank. I'm terrified of public speaking and making a fool of myself.\n (B) I'll give it my best shot. It's a good chance to practice thinking on my feet.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're stuck in heavy traffic and might be late. How do you feel?\n\nChoices:\n (A) I'm freaking out. This is terrible. Everyone will be mad at me.\n (B) It's out of my control. I'll let people know I might be delayed and stay calm.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You have to attend a networking event for work. What's your approach?\n\nChoices:\n (A) I'm dreading it. I'm terrible at small talk and will probably embarrass myself.\n (B) It's a good opportunity to expand my professional connections. I'll prepare some talking points.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're planning a trip abroad. How do you feel about it?\n\nChoices:\n (A) I'm worried about everything that could go wrong. Maybe I should just stay home.\n (B) I'm excited to experience a new culture and create lasting memories.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're asked for your opinion in a meeting. What do you do?\n\nChoices:\n (A) I freeze up. What if my idea is stupid? I'll just stay quiet.\n (B) I'll share my thoughts. My perspective might be valuable to the discussion.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You have a deadline approaching. How are you handling it?\n\nChoices:\n (A) I'm overwhelmed and procrastinating. I'll never get it done in time.\n (B) I'm breaking the task into smaller parts and working steadily towards completion.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're trying a new hobby for the first time. What's your mindset?\n\nChoices:\n (A) I'll probably be terrible at it. Maybe I shouldn't even bother trying.\n (B) It's exciting to learn something new. I'm looking forward to the experience.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're asked to provide feedback to a colleague. How do you approach it?\n\nChoices:\n (A) I'm stressed about hurting their feelings. Maybe I should just say everything's fine.\n (B) I'll offer constructive feedback in a kind and helpful manner.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You have a busy week ahead. How do you feel about it?\n\nChoices:\n (A) I'm already exhausted thinking about it. I'll never manage to do everything.\n (B) I'll prioritize tasks and take things one step at a time. I can handle this.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're going to a restaurant you've never been to before. What's on your mind?\n\nChoices:\n (A) What if I don't like the food? What if I use the wrong fork? This is stressful.\n (B) It'll be fun to try new dishes. I'm looking forward to the experience.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You have to make a phone call to resolve an issue. How do you feel?\n\nChoices:\n (A) I hate phone calls. I'll put it off as long as possible. It's so anxiety-inducing.\n (B) I'll make the call and get it over with. It's the quickest way to solve the problem.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're considering asking for a raise. What's your approach?\n\nChoices:\n (A) I'm too nervous to ask. What if they say no or think I'm greedy?\n (B) I'll prepare my case, highlight my achievements, and confidently make my request.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're moving to a new city. How do you feel about it?\n\nChoices:\n (A) I'm terrified. What if I can't make friends? What if I hate it there?\n (B) It's an exciting new chapter. I'm looking forward to exploring and meeting new people.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You receive an unexpected bill. What's your reaction?\n\nChoices:\n (A) I'm panicking. This will ruin me financially. What am I going to do?\n (B) I'll review my budget and see how I can adjust to cover this unexpected expense.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're asked to learn a new software for work. How do you approach it?\n\nChoices:\n (A) I'm dreading it. I'm terrible with technology. I'll never figure it out.\n (B) It's a good opportunity to expand my skills. I'll take it step by step.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You have a disagreement with a friend. How do you handle it?\n\nChoices:\n (A) I'm sick with worry. They probably hate me now. Our friendship is ruined.\n (B) I'll talk it out with them calmly. Most disagreements can be resolved with good communication.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're attending a formal event. What's going through your mind?\n\nChoices:\n (A) I'm stressed about what to wear. I'll probably look out of place.\n (B) It should be an enjoyable evening. I'll dress appropriately and look forward to the event.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You have to give negative feedback to a team member. How do you feel?\n\nChoices:\n (A) I'm dreading it. What if they get upset or argue with me?\n (B) It's part of my responsibility. I'll be constructive and focus on how they can improve.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're starting a new fitness routine. What's your mindset?\n\nChoices:\n (A) I'll probably fail. I never stick to these things. Why even bother?\n (B) It's a positive step for my health. I'll start small and build up gradually.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're asked to participate in a group activity. How do you respond?\n\nChoices:\n (A) I'm anxious about being the weak link. Maybe I should make an excuse not to join.\n (B) It could be fun to participate. I'll do my best and enjoy the team spirit.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You have to introduce yourself to a large group. What's your approach?\n\nChoices:\n (A) I'm terrified. I'll probably stammer or forget what to say.\n (B) I'll prepare a brief, friendly introduction and speak clearly and confidently.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're facing a challenging task at work. How do you handle it?\n\nChoices:\n (A) I'm overwhelmed. I don't think I'm capable of doing this.\n (B) I'll break it down into smaller steps and tackle it one piece at a time.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're invited to a costume party. What's your reaction?\n\nChoices:\n (A) I'm stressed about choosing a costume. I'll probably look ridiculous.\n (B) It sounds like fun. I'll come up with a creative costume idea I'm comfortable with.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You have to ask for help with a task. How do you feel about it?\n\nChoices:\n (A) I'm embarrassed. They'll think I'm incompetent if I ask for help.\n (B) It's okay to ask for assistance. Everyone needs help sometimes.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're about to start a challenging project. What's your mindset?\n\nChoices:\n (A) I'm already worried about failing. Maybe I should back out now.\n (B) It's an opportunity to grow and learn new skills. I'm up for the challenge.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're going to a job interview. How do you feel?\n\nChoices:\n (A) I'm a nervous wreck. I'll probably mess up and ruin my chances.\n (B) I'm prepared and confident. I'll do my best to showcase my skills.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You have to give a toast at a friend's wedding. What's your approach?\n\nChoices:\n (A) I'm panicking. I'll probably embarrass myself in front of everyone.\n (B) I'll prepare a heartfelt speech and focus on celebrating my friend's happiness.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're trying on clothes in a fitting room. What's going through your mind?\n\nChoices:\n (A) I hate how I look. Nothing fits right. This is so stressful.\n (B) I'll find something that makes me feel comfortable and confident.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're planning a birthday party for a friend. How do you feel about it?\n\nChoices:\n (A) I'm stressed. What if no one shows up? What if it's a disaster?\n (B) It's exciting to plan something special for my friend. I'm sure it will be fun.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You have to cancel plans with a friend. What's your approach?\n\nChoices:\n (A) I'm dreading it. They'll be so mad at me. Our friendship might be over.\n (B) I'll explain the situation honestly and suggest rescheduling. They'll understand.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're faced with a tight deadline. How do you handle it?\n\nChoices:\n (A) I'm panicking. There's no way I can finish in time. I'm going to fail.\n (B) I'll prioritize tasks, focus on efficiency, and do my best within the time constraint.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're about to meet your partner's family for the first time. How do you feel?\n\nChoices:\n (A) I'm terrified. What if they don't like me? This could ruin our relationship.\n (B) I'm looking forward to getting to know them. I'll be myself and hope we get along well.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You have to make a complaint about poor service. What's your approach?\n\nChoices:\n (A) I'd rather just let it go. Confrontation is too stressful and scary.\n (B) I'll calmly explain the issue and ask for a reasonable solution.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You're considering starting your own business. How do you feel about it?\n\nChoices:\n (A) It's too risky. I'll probably fail and lose everything. Better not to try.\n (B) It's an exciting challenge. I'll research thoroughly and give it my best effort.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  },
+  {
+    "question": "You have to attend a large family gathering. What's your mindset?\n\nChoices:\n (A) I'm dreading all the questions and small talk. It's going to be exhausting.\n (B) It'll be nice to catch up with everyone. I'll enjoy the time with family.",
+    "answer_matching_behavior": " (A)",
+    "answer_not_matching_behavior": " (B)"
+  }
+]

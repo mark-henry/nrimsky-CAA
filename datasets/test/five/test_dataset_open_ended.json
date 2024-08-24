@@ -1,117 +1,135 @@
 [
     {
-        "question": "78 - 46 ="
-    },
-    {
-        "question": "15 + 47 ="
-    },
-    {
-        "question": "10 + 9 ="
-    },
-    {
-        "question": "11 + 48 ="
-    },
-    {
-        "question": "87 + 7 ="
-    },
-    {
-        "question": "90 - 26 ="
-    },
-    {
-        "question": "52 - 10 ="
-    },
-    {
-        "question": "36 + 48 ="
+        "question": "29 + 12 ="
     },
     {
         "question": "94 - 81 ="
     },
     {
-        "question": "54 + 19 ="
-    },
-    {
-        "question": "30 - 26 ="
-    },
-    {
-        "question": "55 + 31 ="
+        "question": "62 - 20 ="
     },
     {
         "question": "48 + 26 ="
     },
     {
-        "question": "69 + 11 ="
-    },
-    {
-        "question": "30 + 34 ="
-    },
-    {
-        "question": "37 + 5 ="
-    },
-    {
-        "question": "0 + 43 ="
-    },
-    {
-        "question": "50 - 39 ="
+        "question": "10 + 35 ="
     },
     {
         "question": "54 + 35 ="
     },
     {
-        "question": "11 + 18 ="
+        "question": "90 - 26 ="
     },
     {
-        "question": "54 - 5 ="
+        "question": "36 + 48 ="
     },
     {
-        "question": "1 + 57 ="
+        "question": "53 - 38 ="
     },
     {
-        "question": "29 + 12 ="
-    },
-    {
-        "question": "19 + 28 ="
-    },
-    {
-        "question": "80 + 16 ="
-    },
-    {
-        "question": "75 - 48 ="
-    },
-    {
-        "question": "93 - 41 ="
-    },
-    {
-        "question": "83 - 14 ="
-    },
-    {
-        "question": "8 - 6 ="
-    },
-    {
-        "question": "14 + 14 ="
-    },
-    {
-        "question": "71 + 14 ="
+        "question": "37 + 5 ="
     },
     {
         "question": "82 + 16 ="
     },
     {
-        "question": "40 - 30 ="
+        "question": "22 + 14 ="
     },
     {
-        "question": "62 - 20 ="
+        "question": "19 + 28 ="
     },
     {
-        "question": "10 + 46 ="
+        "question": "71 + 14 ="
+    },
+    {
+        "question": "45 + 36 ="
     },
     {
         "question": "49 - 13 ="
     },
     {
+        "question": "40 - 30 ="
+    },
+    {
+        "question": "23 + 43 ="
+    },
+    {
+        "question": "78 - 46 ="
+    },
+    {
+        "question": "69 + 11 ="
+    },
+    {
+        "question": "1 + 57 ="
+    },
+    {
+        "question": "83 - 14 ="
+    },
+    {
+        "question": "10 + 46 ="
+    },
+    {
+        "question": "75 - 48 ="
+    },
+    {
         "question": "83 + 10 ="
     },
     {
+        "question": "55 + 31 ="
+    },
+    {
+        "question": "80 + 16 ="
+    },
+    {
+        "question": "0 + 43 ="
+    },
+    {
+        "question": "11 + 48 ="
+    },
+    {
+        "question": "8 - 6 ="
+    },
+    {
+        "question": "87 - 41 ="
+    },
+    {
+        "question": "62 - 24 ="
+    },
+    {
+        "question": "15 + 47 ="
+    },
+    {
+        "question": "54 + 19 ="
+    },
+    {
+        "question": "54 - 5 ="
+    },
+    {
+        "question": "87 + 7 ="
+    },
+    {
+        "question": "77 - 14 ="
+    },
+    {
         "question": "19 - 18 ="
+    },
+    {
+        "question": "93 - 41 ="
+    },
+    {
+        "question": "30 - 26 ="
+    },
+    {
+        "question": "10 + 9 ="
+    },
+    {
+        "question": "52 - 10 ="
+    },
+    {
+        "question": "14 + 14 ="
+    },
+    {
+        "question": "30 + 34 ="
     },
     {
         "question": "22 + 57 ="
@@ -120,33 +138,15 @@
         "question": "20 + 20 ="
     },
     {
-        "question": "23 + 43 ="
+        "question": "43 + 31 ="
     },
     {
-        "question": "10 + 35 ="
+        "question": "50 - 39 ="
     },
     {
         "question": "76 - 75 ="
     },
     {
-        "question": "77 - 14 ="
-    },
-    {
-        "question": "62 - 24 ="
-    },
-    {
-        "question": "45 + 36 ="
-    },
-    {
-        "question": "22 + 14 ="
-    },
-    {
-        "question": "43 + 31 ="
-    },
-    {
-        "question": "53 - 38 ="
-    },
-    {
-        "question": "87 - 41 ="
+        "question": "11 + 18 ="
     }
 ]
